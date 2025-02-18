@@ -9,14 +9,16 @@ class UserLoading extends UserState {
 }
 
 class UserLoaded extends UserState {
-  final List<Coop> coops;
-  final List<ChickenCatalog> chickens;
-  final List<TaskCatalog> tasks;
+  final User user;
+  final List<Advice> advice;
+  final List<Rituals> rituals;
+  final List<Articles> articles;
 
   const UserLoaded({
-    required this.coops,
-    required this.chickens,
-    required this.tasks,
+    required this.user,
+    required this.advice,
+    required this.rituals,
+    required this.articles,
   });
 }
 

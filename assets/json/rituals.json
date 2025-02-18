@@ -1,0 +1,722 @@
+[
+    {
+        "id": 1,
+        "title": "Morning Stretching Routine",
+        "description": "A simple morning stretching routine to awaken the body and improve flexibility.",
+        "category": "Physical Activity",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Neck and Shoulder Stretch",
+                "description": "Gently tilt your head from side to side to stretch your neck, followed by rotating your shoulders in circles."
+            },
+            {
+                "number": 2,
+                "title": "Side Stretch",
+                "description": "Stand tall and reach one arm overhead, bending to the opposite side to stretch the sides of your body."
+            },
+            {
+                "number": 3,
+                "title": "Hip Flexor Stretch",
+                "description": "Step one foot forward into a lunge position, keeping the back knee on the ground to stretch your hips."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 2,
+        "title": "Morning Hydration Ritual",
+        "description": "Drinking water first thing in the morning to kickstart hydration and metabolism.",
+        "category": "Nutrition",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Warm Water Drink",
+                "description": "Start your morning by drinking a glass of warm water to cleanse your system and hydrate."
+            },
+            {
+                "number": 2,
+                "title": "Add Lemon",
+                "description": "Add a slice of lemon to your water to help alkalize your body and support digestion."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 3,
+        "title": "Gratitude Meditation",
+        "description": "A short morning meditation to set a positive tone for the day.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Find a Quiet Spot",
+                "description": "Sit in a quiet space where you can focus without distractions."
+            },
+            {
+                "number": 2,
+                "title": "Close Your Eyes",
+                "description": "Close your eyes and focus on your breathing to calm your mind."
+            },
+            {
+                "number": 3,
+                "title": "Reflect on Gratitude",
+                "description": "Think of three things you are grateful for and allow yourself to feel appreciation."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 4,
+        "title": "Mindful Eating",
+        "description": "Taking the time to eat slowly and focus on your meal to improve digestion and enjoyment.",
+        "category": "Nutrition",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare Your Meal",
+                "description": "Take time to prepare a balanced meal with whole foods."
+            },
+            {
+                "number": 2,
+                "title": "Sit Down and Focus",
+                "description": "Sit at a table, away from distractions, and focus solely on your meal."
+            },
+            {
+                "number": 3,
+                "title": "Chew Slowly",
+                "description": "Chew each bite thoroughly to aid digestion and enjoy the flavors."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 5,
+        "title": "Midday Walk",
+        "description": "A short walk to refresh your mind and body during the day.",
+        "category": "Physical Activity",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Get Ready",
+                "description": "Put on comfortable shoes and step outside for a short walk."
+            },
+            {
+                "number": 2,
+                "title": "Walk at a Steady Pace",
+                "description": "Walk at a moderate pace for 10-15 minutes, focusing on your breathing."
+            },
+            {
+                "number": 3,
+                "title": "Mindful Walking",
+                "description": "As you walk, be aware of your surroundings, breathing in fresh air and relaxing your mind."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 6,
+        "title": "Breathing Exercise",
+        "description": "A simple breathing technique to relax and reduce stress.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Sit Comfortably",
+                "description": "Find a comfortable seated position with your spine straight."
+            },
+            {
+                "number": 2,
+                "title": "Inhale Deeply",
+                "description": "Take a deep breath in through your nose, filling your lungs completely."
+            },
+            {
+                "number": 3,
+                "title": "Exhale Slowly",
+                "description": "Exhale slowly through your mouth, releasing tension with each breath."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 7,
+        "title": "Evening Unwinding Ritual",
+        "description": "A calming routine to help your body prepare for sleep.",
+        "category": "Sleep and Rest",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Dim the Lights",
+                "description": "Reduce the lighting in your home to create a calming environment."
+            },
+            {
+                "number": 2,
+                "title": "Turn Off Screens",
+                "description": "Turn off all electronic devices at least 30 minutes before bed."
+            },
+            {
+                "number": 3,
+                "title": "Gentle Stretching",
+                "description": "Do a few light stretches to relax your body and ease muscle tension."
+            },
+            {
+                "number": 4,
+                "title": "Create a Relaxing Atmosphere",
+                "description": "Play soft music or use essential oils to promote relaxation before sleep."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 8,
+        "title": "Social Media Detox",
+        "description": "A ritual to disconnect from social media and recharge your mental health.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Set a Timer",
+                "description": "Set a timer for a specific amount of time to stay off social media."
+            },
+            {
+                "number": 2,
+                "title": "Engage in Offline Activities",
+                "description": "Spend the time doing activities that don't involve screens, like reading or cooking."
+            },
+            {
+                "number": 3,
+                "title": "Reflect on Your Day",
+                "description": "Use the time away from social media to reflect on your day and emotions."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 9,
+        "title": "Self-Care Evening Ritual",
+        "description": "An evening self-care routine to nurture both body and mind.",
+        "category": "Self-Care",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare a Warm Bath",
+                "description": "Fill the bath with warm water, adding essential oils or bath salts for relaxation."
+            },
+            {
+                "number": 2,
+                "title": "Exfoliate Your Skin",
+                "description": "Gently exfoliate your skin with a scrub to remove dead skin cells."
+            },
+            {
+                "number": 3,
+                "title": "Apply Moisturizer",
+                "description": "After your bath, apply a nourishing moisturizer to keep your skin hydrated."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 10,
+        "title": "Breathing for Better Sleep",
+        "description": "A breathing exercise to help you relax before bedtime.",
+        "category": "Sleep and Rest",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Lie Down Comfortably",
+                "description": "Lie on your back with your arms by your sides and close your eyes."
+            },
+            {
+                "number": 2,
+                "title": "Slow Breathing",
+                "description": "Breathe in slowly through your nose for a count of four, then exhale for a count of four."
+            },
+            {
+                "number": 3,
+                "title": "Focus on Your Breath",
+                "description": "Continue breathing slowly and focus on the rhythm of your breath to calm your mind."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 11,
+        "title": "Morning Journaling",
+        "description": "A journaling practice to set your intentions for the day and clear your mind.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Find a Quiet Space",
+                "description": "Sit in a quiet and comfortable space where you can focus without distractions."
+            },
+            {
+                "number": 2,
+                "title": "Write Your Thoughts",
+                "description": "Write freely about how you're feeling and what you want to achieve today."
+            },
+            {
+                "number": 3,
+                "title": "Set Your Intentions",
+                "description": "Write down your main goals or intentions for the day ahead."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 12,
+        "title": "Healthy Breakfast Ritual",
+        "description": "Start your day with a nutritious and balanced breakfast to fuel your body.",
+        "category": "Nutrition",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare Whole Foods",
+                "description": "Choose whole grains, fruits, and proteins like eggs or yogurt for your breakfast."
+            },
+            {
+                "number": 2,
+                "title": "Eat Mindfully",
+                "description": "Sit down and focus on your meal, avoiding distractions like screens or multitasking."
+            },
+            {
+                "number": 3,
+                "title": "Drink Water",
+                "description": "Start your meal by drinking a glass of water to stay hydrated."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 13,
+        "title": "Midday Gratitude Break",
+        "description": "Take a moment to reflect on what you're grateful for during your lunch break.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Find a Calm Spot",
+                "description": "Find a quiet place to sit and relax for a few minutes."
+            },
+            {
+                "number": 2,
+                "title": "Think of Three Things",
+                "description": "List three things you are grateful for in your life right now."
+            },
+            {
+                "number": 3,
+                "title": "Feel the Gratitude",
+                "description": "Close your eyes and let the feelings of gratitude fill you as you reflect."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 14,
+        "title": "Walk and Talk",
+        "description": "Go for a walk with a friend or loved one to build stronger social connections.",
+        "category": "Social Connections",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Invite a Friend",
+                "description": "Invite a friend or loved one to join you for a walk outside."
+            },
+            {
+                "number": 2,
+                "title": "Walk Together",
+                "description": "Walk at a comfortable pace, enjoying each other’s company and conversation."
+            },
+            {
+                "number": 3,
+                "title": "Stay Present",
+                "description": "Focus on your conversation and the experience of being outdoors together."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 15,
+        "title": "Tea Ritual",
+        "description": "A calming ritual involving tea to help you relax and unwind.",
+        "category": "Self-Care",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Select Your Tea",
+                "description": "Choose a calming herbal tea, such as chamomile or lavender."
+            },
+            {
+                "number": 2,
+                "title": "Brew Your Tea",
+                "description": "Brew your tea carefully, paying attention to the aroma and color."
+            },
+            {
+                "number": 3,
+                "title": "Savor the Moment",
+                "description": "Sit quietly and enjoy each sip, focusing on the warmth and taste of the tea."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 16,
+        "title": "Deep Breathing Before Bed",
+        "description": "A breathing exercise to calm your mind before sleep.",
+        "category": "Sleep and Rest",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Lie Down Comfortably",
+                "description": "Lie flat on your back, with your arms by your sides and your body relaxed."
+            },
+            {
+                "number": 2,
+                "title": "Inhale Deeply",
+                "description": "Inhale deeply through your nose, allowing your belly to expand."
+            },
+            {
+                "number": 3,
+                "title": "Exhale Slowly",
+                "description": "Exhale slowly through your mouth, releasing any tension with each breath."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 17,
+        "title": "Morning Yoga Flow",
+        "description": "A gentle yoga routine to stretch and awaken the body.",
+        "category": "Physical Activity",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Start in Mountain Pose",
+                "description": "Stand tall with feet together, grounding yourself with deep breaths."
+            },
+            {
+                "number": 2,
+                "title": "Flow Through Sun Salutations",
+                "description": "Move through a series of Sun Salutations to stretch your body and wake it up."
+            },
+            {
+                "number": 3,
+                "title": "Finish in Child's Pose",
+                "description": "End your practice in Child’s Pose to relax and calm your mind."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 18,
+        "title": "Social Media Fast",
+        "description": "A ritual to disconnect from social media and reconnect with yourself.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Set a Time Limit",
+                "description": "Decide on a specific period to avoid social media, such as a day or a week."
+            },
+            {
+                "number": 2,
+                "title": "Engage in Offline Activities",
+                "description": "Fill the time with offline activities like reading, cooking, or exercising."
+            },
+            {
+                "number": 3,
+                "title": "Reflect on Your Experience",
+                "description": "Take time to reflect on how you feel without the distraction of social media."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 19,
+        "title": "Mindful Breathing Break",
+        "description": "A brief break for mindful breathing to refresh your mind and reduce stress.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Sit in a Comfortable Position",
+                "description": "Sit in a relaxed but upright position, with your feet flat on the floor."
+            },
+            {
+                "number": 2,
+                "title": "Focus on Your Breath",
+                "description": "Close your eyes and take slow, deep breaths, focusing on the air entering and leaving your body."
+            },
+            {
+                "number": 3,
+                "title": "Notice Your Body",
+                "description": "Notice how your body feels with each inhale and exhale, and let go of any tension."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 20,
+        "title": "Stretching After Work",
+        "description": "A post-work stretching routine to release tension from the day.",
+        "category": "Physical Activity",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Reach Up and Stretch",
+                "description": "Stand tall and reach both arms overhead, stretching your back and shoulders."
+            },
+            {
+                "number": 2,
+                "title": "Forward Fold",
+                "description": "Bend forward at the waist and hang your upper body down to stretch your hamstrings."
+            },
+            {
+                "number": 3,
+                "title": "Seated Spinal Twist",
+                "description": "Sit down and twist your torso gently to each side to release tension in the spine."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 21,
+        "title": "Reflective Journaling",
+        "description": "A ritual to reflect on the day and release emotions.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Find a Quiet Space",
+                "description": "Sit in a quiet, comfortable place where you can reflect without distractions."
+            },
+            {
+                "number": 2,
+                "title": "Write Your Thoughts",
+                "description": "Write freely about how your day went, including any challenges or highlights."
+            },
+            {
+                "number": 3,
+                "title": "Release Negative Emotions",
+                "description": "Write down any negative emotions and let them go by acknowledging them in your journal."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 22,
+        "title": "Gentle Morning Meditation",
+        "description": "A short meditation to calm your mind and center yourself for the day ahead.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Sit Comfortably",
+                "description": "Find a comfortable seated position with your back straight and your eyes closed."
+            },
+            {
+                "number": 2,
+                "title": "Focus on Your Breath",
+                "description": "Breathe deeply and focus on the sensation of your breath entering and leaving your body."
+            },
+            {
+                "number": 3,
+                "title": "Let Thoughts Pass",
+                "description": "When thoughts arise, gently acknowledge them and let them pass without attachment."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 23,
+        "title": "Replenishing Skin Care Routine",
+        "description": "A skin care routine to nourish and replenish your skin at night.",
+        "category": "Self-Care",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Cleanse Your Skin",
+                "description": "Use a gentle cleanser to remove makeup and impurities from your skin."
+            },
+            {
+                "number": 2,
+                "title": "Apply Toner",
+                "description": "Apply a hydrating toner to balance your skin's pH levels."
+            },
+            {
+                "number": 3,
+                "title": "Moisturize",
+                "description": "Finish by applying a rich moisturizer to lock in hydration and nourish your skin."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 24,
+        "title": "Nature Walk",
+        "description": "A walk in nature to clear your mind and connect with the environment.",
+        "category": "Nature Practices",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare for Your Walk",
+                "description": "Put on comfortable shoes and prepare for a peaceful walk outside."
+            },
+            {
+                "number": 2,
+                "title": "Walk Mindfully",
+                "description": "As you walk, take in the sights, sounds, and smells around you."
+            },
+            {
+                "number": 3,
+                "title": "Reflect and Relax",
+                "description": "Pause for a moment in nature and reflect on how the environment makes you feel."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 25,
+        "title": "Positive Affirmations",
+        "description": "A ritual of repeating positive affirmations to boost confidence and mindset.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Stand Tall",
+                "description": "Stand in front of a mirror and take a deep breath."
+            },
+            {
+                "number": 2,
+                "title": "Repeat Affirmations",
+                "description": "Say out loud positive affirmations such as 'I am worthy' or 'I am capable.'"
+            },
+            {
+                "number": 3,
+                "title": "Feel the Power",
+                "description": "Feel the energy of the affirmations as they sink in, boosting your confidence."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 26,
+        "title": "Cleansing Body Ritual",
+        "description": "A ritual to cleanse the body with a detoxifying bath and self-care.",
+        "category": "Self-Care",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare the Bath",
+                "description": "Fill the bath with warm water and add Epsom salts or detoxifying oils."
+            },
+            {
+                "number": 2,
+                "title": "Soak and Relax",
+                "description": "Sit back and relax, letting the warm water soothe your muscles and cleanse your body."
+            },
+            {
+                "number": 3,
+                "title": "Moisturize Skin",
+                "description": "After the bath, apply a nourishing moisturizer to lock in hydration."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 27,
+        "title": "Grounding Meditation",
+        "description": "A meditation to ground yourself and connect with the earth.",
+        "category": "Mental Health",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Sit Comfortably",
+                "description": "Sit in a relaxed position with your feet flat on the ground."
+            },
+            {
+                "number": 2,
+                "title": "Focus on Your Breath",
+                "description": "Breathe deeply and focus on your breath, allowing your body to relax."
+            },
+            {
+                "number": 3,
+                "title": "Visualize Roots",
+                "description": "Visualize roots growing from your feet deep into the earth, grounding you."
+            }
+        ],
+        "daytime": 1
+    },
+    {
+        "id": 28,
+        "title": "Gratitude Walk",
+        "description": "A walk with the intention of reflecting on what you're grateful for.",
+        "category": "Social Connections",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Step Outside",
+                "description": "Step outside into nature, focusing on the feeling of the earth beneath your feet."
+            },
+            {
+                "number": 2,
+                "title": "Reflect on Gratitude",
+                "description": "Think about three things you're grateful for as you walk."
+            },
+            {
+                "number": 3,
+                "title": "Feel Thankful",
+                "description": "Let the feelings of gratitude fill you as you continue walking."
+            }
+        ],
+        "daytime": 2
+    },
+    {
+        "id": 29,
+        "title": "Mindful Eating at Dinner",
+        "description": "A mindful eating practice to help you enjoy and digest your dinner.",
+        "category": "Nutrition",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Prepare a Balanced Meal",
+                "description": "Prepare a meal with balanced portions of protein, vegetables, and healthy fats."
+            },
+            {
+                "number": 2,
+                "title": "Eat Slowly",
+                "description": "Take small bites and chew slowly, savoring the flavors of the food."
+            },
+            {
+                "number": 3,
+                "title": "Appreciate Your Meal",
+                "description": "Take a moment to appreciate the effort that went into preparing your meal."
+            }
+        ],
+        "daytime": 3
+    },
+    {
+        "id": 30,
+        "title": "Nightly Skin Care Routine",
+        "description": "A night-time skincare routine to nourish and repair your skin.",
+        "category": "Self-Care",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Remove Makeup",
+                "description": "Gently remove all makeup with a makeup remover or cleansing oil."
+            },
+            {
+                "number": 2,
+                "title": "Cleanse Your Face",
+                "description": "Use a gentle cleanser to wash your face and remove impurities."
+            },
+            {
+                "number": 3,
+                "title": "Apply Night Cream",
+                "description": "Apply a hydrating night cream to lock in moisture while you sleep."
+            }
+        ],
+        "daytime": 3
+    }
+]
