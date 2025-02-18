@@ -21,7 +21,7 @@ class AppRoot extends StatelessWidget {
               fontFamily: 'Bur',
               fontSize: 24,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF614949),
+              color: Color(0xFF510202),
             ),
           ),
         ),
@@ -30,10 +30,9 @@ class AppRoot extends StatelessWidget {
             data: ThemeData(
               textTheme: const TextTheme(
                 bodyLarge: TextStyle(
-                  fontFamily: 'Bur',
+                  fontFamily: 'Mulish',
                   fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFF614949),
+                  color: Color(0xFFFFE5D2),
                 ),
               ),
             ),

@@ -35,6 +35,9 @@ flutter:
      - assets/json/
 
   fonts:
-      - family: Bur
+      - family: Boleh
         fonts:
-          - asset: assets/fonts/Bur.otf
+          - asset: assets/fonts/Boleh.ttf
+      - family: Mulish
+        fonts:
+          - asset: assets/fonts/Mulish.ttf
