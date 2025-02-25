@@ -31,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
       if (user.isEmpty) {
         user = [User.init()];
-        await userRepository.update(user.first);
+        await userRepository.save(user.first);
       }
 
       emit(

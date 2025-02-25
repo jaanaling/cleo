@@ -20,6 +20,7 @@ dependencies:
     sdk: flutter
   advertising_id: ^2.7.1
   flutter_svg: ^2.0.17
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -41,3 +42,6 @@ flutter:
       - family: Mulish
         fonts:
           - asset: assets/fonts/Mulish.ttf
+      - family: Florida Vibes
+        fonts:
+          - asset: assets/fonts/Florida Vibes.otf

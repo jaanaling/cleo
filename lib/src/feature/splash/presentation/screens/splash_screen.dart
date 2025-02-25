@@ -1,4 +1,5 @@
 import 'package:advertising_id/advertising_id.dart';
+import 'package:cleopatras_secrets/src/core/utils/size_utils.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,130 +44,44 @@ class _SplashScreenState extends State<SplashScreen> {
       alignment: Alignment.center,
       children: [
         Positioned.fill(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3),
-                  BlendMode.dstATop,
-                ),
-                scale: 1.1,
-                image: AssetImage(
-                  IconProvider.menu.buildImageUrl(),
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
+            child: AppIcon(asset: IconProvider.splash.buildImageUrl(), width: double.infinity, fit: BoxFit.fitWidth,)),
+        Positioned(
+          left: getWidth(context, baseSize: 9),
+          bottom: getHeight(context, baseSize: 165),
+          child: AppIcon(
+            asset: IconProvider.logo.buildImageUrl(),
+            fit: BoxFit.fitWidth,
+            width: getWidth(context, baseSize: 281),
           ),
         ),
         Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: AppIcon(
-              asset: IconProvider.logo.buildImageUrl(),
-              fit: BoxFit.fitWidth,
+          bottom: getHeight(context, baseSize: 64),
+          child: SizedBox(
+            width: 297,
+            height: 15,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                AppIcon(
+                  asset: IconProvider.loaderBack.buildImageUrl(),
+                  fit: BoxFit.fitWidth,
+                  width: 297,
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 293,
+                  child: LinearProgressIndicator(
+                    minHeight: 9.52,
+                    backgroundColor: Colors.transparent,
+                    color: Color(0xFF55B521),
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                )
+              ],
             ),
           ),
-        ),
-        Positioned(
-            bottom: height * 0.036 + MediaQuery.of(context).padding.bottom,
-            child: LoadingAnimation()),
+        )
       ],
-    );
-  }
-}
-
-class LoadingAnimation extends StatefulWidget {
-  @override
-  _LoadingAnimationState createState() => _LoadingAnimationState();
-}
-
-class _LoadingAnimationState extends State<LoadingAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation1;
-  late Animation<double> _animation2;
-  late Animation<double> _animation3;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..repeat();
-
-    _animation1 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.6)),
-    );
-
-    _animation2 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.2, 0.8)),
-    );
-
-    _animation3 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.4, 1.0)),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Loading',
-          style: TextStyle(
-            fontSize: 24,
-          ),
-        ),
-        const Gap(3),
-        AnimatedDot(animation: _animation1),
-        const SizedBox(width: 8),
-        AnimatedDot(animation: _animation2),
-        const SizedBox(width: 8),
-        AnimatedDot(animation: _animation3),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-class AnimatedDot extends StatelessWidget {
-  final Animation<double> animation;
-
-  AnimatedDot({required this.animation});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: AnimatedBuilder(
-        animation: animation,
-        builder: (context, child) {
-          return Opacity(
-            opacity: animation.value,
-            child: Container(
-              width: 4,
-              height: 4,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }

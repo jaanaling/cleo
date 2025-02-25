@@ -5,21 +5,21 @@ enum RouteValue {
   home(
     path: '/home',
   ),
-  detailed(
+  statistic(
     path: 'detailed',
   ),
-  create(
-    path: 'create',
+  articles(
+    path: '/articles',
   ),
 
-  chicken(
-    path: 'chicken',
+  article(
+    path: 'article',
   ),
- task(
-    path: 'task',
+  rituals(
+    path: '/rituals',
   ),
- history(
-    path: 'history',
+  ritual(
+    path: 'ritual',
   ),
 
   unknown(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AnimatedButton extends StatefulWidget {
   final Widget child;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const AnimatedButton({
     super.key,
@@ -18,16 +18,20 @@ class _AnimatedButtonState extends State<AnimatedButton> {
   double _scale = 1.0; // Начальный масштаб
 
   void _onTapDown(TapDownDetails details) {
-    setState(() {
-      _scale = 0.9; // Уменьшение кнопки
-    });
+    if (widget.onPressed != null) {
+      setState(() {
+        _scale = 0.9;
+      });
+    }
   }
 
   void _onTapUp(TapUpDetails details) {
-    setState(() {
-      _scale = 1.0; // Возврат к исходному размеру
-    });
-    widget.onPressed(); // Вызов обработчика нажатия
+    if (widget.onPressed != null) {
+      setState(() {
+        _scale = 1.0;
+      });
+      widget.onPressed!();
+    }
   }
 
   void _onTapCancel() {

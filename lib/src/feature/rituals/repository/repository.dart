@@ -27,6 +27,16 @@ class Repository {
     );
   }
 
+    Future<void> save(User item) {
+    return JsonLoader.saveData<User>(
+      user,
+      item,
+      () async => await load(),
+      (item) => item.copyWith().toMap(),
+    );
+  }
+
+
   Future<List<Articles>> loadArticles() {
     return JsonLoader.loadData<Articles>(
       articles,

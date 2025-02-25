@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "title": "How to keep your body water balanced",
+        "title": "Keep your body water balanced",
         "content": "Water is the main element that keeps the body vital. It participates in metabolic processes and helps to eliminate toxins. In order to maintain water balance, it is necessary to drink enough fluids. The human body consists of 60% water. Water intake affects the health of the skin and hair. One of the functions of water is to regulate body temperature. If the body is deficient in water, it can lead to headaches. It is important to drink water throughout the day to maintain balance. Tea, juices and soups can also be sources of fluids. The recommended amount of water depends on a person's weight, climate, and activity level."
     },
     {
         "id": 2,
-        "title": "Importance of Protein in the Diet",
+        "title": "Protein in the Diet",
         "content": "Proteins are the building material for the cells and tissues of the body. They are involved in metabolic processes and are essential for muscle growth. Protein can be found in animal and vegetable products. It is important to have both animal and plant proteins in your diet. Protein deficiencies can lead to a weakened immune system. Protein also plays a role in cellular repair after physical exertion. To keep your body functioning properly, you need to maintain a balance in your diet. Examples of protein foods are meat, fish, eggs and legumes. Protein is important for people who lead an active lifestyle. Sports nutrition often includes protein supplements."
     },
     {
         "id": 3,
-        "title": "How to choose the right diet for weight loss",
+        "title": "Right diet for weight loss",
         "content": "The choice of diet depends on the goals and health condition of the person. It is best to approach the choice of diet taking into account the recommendations of a specialist. The most popular are low-calorie diets, but it is important not to bring the body to exhaustion. It is important to keep a balance between carbohydrates, proteins and fats. Low-carbohydrate diets can be effective, but they should be used with caution. Some people prefer interval fasting to help regulate weight. Meals should be varied and contain all necessary vitamins and minerals. Dietary supplements can help maintain health, but they are not a substitute for a complete diet. Not only is it important to watch your diet, but it is also important to engage in physical activity to achieve consistent results. Gradual weight loss is the best way to achieve sustainable results."
     },
     {
         "id": 4,
-        "title": "How to Improve Sleep Quality",
+        "title": "Sleep Quality",
         "content": "The quality of sleep directly affects our health and well-being. It is important to maintain a regular sleep schedule, going to bed and getting up at the same time. Mobile devices before bedtime can disrupt the sleep cycle by emitting blue light. A comfortable bedroom temperature also promotes deep sleep. Certain foods such as coffee and chocolate can interfere with falling asleep. Exercising outdoors during the day can help improve the quality of sleep at night. It is helpful to practice meditation or yoga to relax before bedtime. It is very important to create a cozy atmosphere in the bedroom, so that the body rests. Psycho-emotional state also plays a role in the quality of sleep. A good night's sleep helps improve memory and concentration."
     },
     {
         "id": 5,
-        "title": "The role of vitamins and minerals in the body",
+        "title": "Vitamins and minerals",
         "content": "Vitamins and minerals are essential for maintaining the normal functioning of the body. Vitamins are divided into water-soluble and fat-soluble. They affect the immune system, metabolism and organ function. Minerals such as calcium, magnesium and potassium are important for bone and heart health. Vitamin D promotes calcium absorption and improves bone health. Vitamin A is essential for good vision. It is also important to get vitamin C to maintain immunity. Micronutrients such as iron and zinc play a key role in metabolism. Deficiencies in vitamins and minerals can lead to various diseases. A healthy diet helps to provide the body with all the micronutrients it needs."
     },
     {
@@ -31,37 +31,37 @@
     },
     {
         "id": 7,
-        "title": "How to improve bowel function",
+        "title": "Bowel function",
         "content": "Intestinal health has a direct impact on our overall health. Proper nutrition is one of the main factors contributing to normal bowel function. Including fiber in your diet helps improve digestion. Probiotics and prebiotics help normalize the intestinal microflora. It is important to drink enough water to prevent constipation. Frequent consumption of fatty foods can lead to digestive disorders. Stress and nervous overload can also worsen intestinal function. Regular physical activity helps improve bowel motility. Abdominal massage and relaxation treatments help improve digestion. Good gut health helps to boost the body's immune function."
     },
     {
         "id": 8,
-        "title": "How to choose the right diet for weight loss",
+        "title": "Diet for weight loss",
         "content": "Losing weight starts with proper nutrition, which should be balanced and varied. It is important to control the number of calories consumed and watch the ratio of macronutrients. Vegetables, fruits and whole grain products should form the basis of the diet. Protein from meat and plant sources helps to preserve muscle while reducing body weight. Carbohydrates such as bread and potatoes should be consumed in moderation. Healthy fats from nuts and fish keep the metabolism going. It is important to avoid fast carbohydrates such as sugar and confectionery. For sustainable results, it is important to stick to the diet for a long period of time. Don't forget water and regular exercise. Gradual calorie reduction will help avoid stress on the body."
     },
     {
         "id": 9,
-        "title": "How to deal with emotional stress",
+        "title": "Emotional stress",
         "content": "Emotional stress is the body's normal response to stressful situations. However, constant stress can lead to poor health. To reduce stress levels, it is important to use relaxation techniques such as meditation and breathing exercises. It is also important to keep physically active to release tension. Good rest and adequate sleep can help to restore energy. It is important to learn how to manage your time and avoid overloading yourself. Psychological support from friends and family can also help you cope with stress. Sometimes it is helpful to seek help from a professional, such as a psychotherapist. Enjoyable hobbies and creative activities also reduce stress levels. Keeping a balance between work and rest can help improve emotional well-being."
     },
     {
         "id": 10,
-        "title": "How to Strengthen Your Immune System",
+        "title": "Immune System",
         "content": "The immune system protects the body from infections and diseases. To keep the immune system functioning properly, it is important to get enough vitamins and minerals. Vitamins C and D play a key role in boosting immunity. A healthy sleep pattern and a nutritious diet are also important. Regular physical activity helps improve the body's immune response. Probiotics and prebiotics help normalize microflora and strengthen immunity. Psycho-emotional state also affects the immune system. Recent studies show that stress weakens the body's defenses. It is important to avoid smoking and limit alcohol consumption. It is recommended to drink enough water to keep the body properly hydrated."
     },
     {
         "id": 11,
-        "title": "Benefits of Plant-Based Nutrition",
+        "title": "Plant-Based Nutrition",
         "content": "A plant-based diet provides many benefits to the body. Vegetables, fruits and cereals are sources of vitamins and minerals. Such a diet helps normalize body weight and improve metabolism. Plant foods are rich in fiber, which helps digestion. This diet reduces the risk of heart and vascular diseases. A plant-based diet can reduce inflammation in the body. Studies show that vegetarians have lower cholesterol levels. It is important that a plant-based diet is balanced and contains all the essential amino acids. Plant-based foods can replace meat by providing the body with proteins. A vegan diet is a healthy choice if you watch your intake of vitamins B12 and D."
     },
     {
         "id": 12,
-        "title": "How to Choose the Right Exercise",
+        "title": "Right physical Exercise",
         "content": "The right physical activity depends on a person's goals and health condition. To improve the cardiovascular system, cardio exercises such as running, swimming and cycling are suitable. To develop strength, one should do strength exercises using body weight or exercise machines. Flexibility can be improved through stretching, yoga and Pilates. It is important to consider your age and fitness level. Beginners should start with moderate loads, gradually increasing the intensity. To prevent injuries, you need to warm up properly before exercising. It is important to remember that rest is also an important part of the training process. Physical activity helps keep you healthy and improves your mood. Combining different types of exertion gives the best results."
     },
     {
         "id": 13,
-        "title": "How to choose the best sports drink",
+        "title": "Best sports drink",
         "content": "Sports drinks help restore water and electrolyte balance after exercise. They contain electrolytes such as sodium, potassium and magnesium. For short workouts, you can get by with plain water. For prolonged exercise, especially in hot weather, it is better to use isotonic drinks. They are quickly digested and restore blood sugar levels. Sports drinks come with or without added carbohydrates. Carbohydrates help replenish energy stores, especially during intense workouts. However, you need to be careful with drinks that contain a lot of sugar. There are also a number of post-workout recovery drinks with added protein. Choose your drink depending on your workout goals and intensity."
     },
     {
@@ -76,7 +76,7 @@
     },
     {
         "id": 16,
-        "title": "Health Benefits of Green Tea",
+        "title": "Green Tea",
         "content": "Green tea is known for its health benefits. It contains antioxidants that help protect the body from free radicals. Green tea boosts metabolism and helps in weight loss. It is also good for the heart and blood vessels and improves blood circulation. The vitamins and minerals in green tea support healthy skin and hair. The caffeine in tea helps to increase energy levels and improve concentration. Green tea is also known for its antibacterial effect. Regular consumption of green tea can help reduce stress levels. It improves brain function and helps prevent neurodegenerative diseases. It is recommended to drink green tea without added sugar to preserve its beneficial properties."
     },
     {
@@ -86,17 +86,17 @@
     },
     {
         "id": 18,
-        "title": "Nutrition for maintaining good eyesight",
+        "title": "Nutrition for good eyesight",
         "content": "Vision is one of the most important senses. It requires vitamins A, C and E to maintain its health. These vitamins are found in foods such as carrots, spinach and berries. Omega-3 fatty acids are also good for vision, they help improve blood supply to the eyes. Protection from ultraviolet rays is also important to prevent eye damage. Regular consumption of these foods helps to improve visual acuity. It is also advisable to have regular checkups with an eye doctor to prevent eye diseases. Quitting smoking helps in maintaining eye health. Consuming foods with antioxidants helps in protecting the eyes from aging. It's important to strike a balance and monitor your eye health throughout your life."
     },
     {
         "id": 19,
-        "title": "How to Choose the Perfect Morning Ritual",
+        "title": "Perfect Morning Ritual",
         "content": "A morning ritual helps set you up for a productive day. It is important to start the morning with exercise or stretching to wake up the body. Drinking a glass of water helps kick-start the metabolism and hydrate the body. Some people choose to meditate or practice gratitude. Taking time to read or plan your day is helpful. A morning walk in the fresh air can help energize your body. Breakfast should be balanced and include protein, carbohydrates and fats. Writing down your goals for the day or doing visualization is also helpful. Your morning ritual should be harmonious and in line with your rhythm of life. Start the day with a positive attitude and create a habit of doing this daily."
     },
     {
         "id": 20,
-        "title": "How to Keep Your Skin Healthy",
+        "title": "Healthy Skin",
         "content": "Skin is a reflection of the condition of our body. To maintain healthy skin, it is important to maintain a regular skin care routine. Cleansing the skin twice a day helps to remove impurities and excess oil. Moisturizing is necessary to maintain the moisture balance in the skin. It is important to use sunscreen to prevent UV damage. Nutrition plays an important role, vitamins and minerals help keep the skin healthy. Lack of sleep can lead to skin deterioration. Regular physical activity helps improve circulation and keeps skin healthy. It is important to use anti-aging products to prevent early wrinkles. Avoiding bad habits is also beneficial for skin health."
     }
 ]
