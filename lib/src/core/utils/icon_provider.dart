@@ -9,6 +9,7 @@ enum IconProvider {
   articles(imageName: 'articles.png'),
   back(imageName: 'back.png'),
    num(imageName: 'num.png'),
+   fieldBack(imageName: "field_back.png"),
   background(imageName: 'background.webp'),
   blueButton(imageName: 'blue_button.png'),
   bluredBackground(imageName: 'blured_background.webp'),

@@ -1,4 +1,5 @@
 import 'package:cleopatras_secrets/routes/go_router_config.dart';
+import 'package:cleopatras_secrets/routes/route_value.dart';
 import 'package:cleopatras_secrets/src/core/utils/app_icon.dart';
 import 'package:cleopatras_secrets/src/core/utils/icon_provider.dart';
 import 'package:cleopatras_secrets/src/core/utils/size_utils.dart';
@@ -65,7 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: getWidth(context, baseSize: 69),
                                     fit: BoxFit.fitWidth,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.push(
+                                        "${RouteValue.home.path}/${RouteValue.statistic.path}",
+                                        extra: typeSelected);
+                                  },
                                 ),
                                 Gap(10),
                                 AnimatedButton(
@@ -339,6 +344,10 @@ void _showAlertDialog(
 }
 
 void addStatusPopup(BuildContext context) {
+  final TextEditingController waterController = TextEditingController();
+  final TextEditingController foodController = TextEditingController();
+  final TextEditingController sleepController = TextEditingController();
+
   showDialog(
     context: context,
     useSafeArea: false,
@@ -354,20 +363,8 @@ void addStatusPopup(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 20),
-                        child: AnimatedButton(
-                          child: AppIcon(
-                            asset: IconProvider.closeRounded.buildImageUrl(),
-                            width: getWidth(
-                              context,
-                              baseSize: 69,
-                            ),
-                            fit: BoxFit.fitWidth,
-                          ),
-                          onPressed: () => context.pop(),
-                        ),
+                      SizedBox(
+                        height: 1,
                       ),
                       Container(
                         width: double.infinity,
@@ -389,6 +386,50 @@ void addStatusPopup(BuildContext context) {
                             )
                           ],
                         ),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerRight,
+                               
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 20),
+                                  child: AnimatedButton(
+                                    child: AppIcon(
+                                      asset: IconProvider.close
+                                          .buildImageUrl(),
+                                      width: getWidth(
+                                        context,
+                                        baseSize: 30,
+                                      ),
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                    onPressed: () => context.pop(),
+                                  ),
+                                ),
+                              ),
+                              TextFieldRow(
+                                text: "h",
+                                controller: sleepController,
+                                icon: IconProvider.sleep.buildImageUrl(),
+                                title: "Time of\nsleep",
+                              ),
+                              Gap(20),
+                              TextFieldRow(
+                                text: "ml",
+                                controller: waterController,
+                                icon: IconProvider.water.buildImageUrl(),
+                                title: "Water",
+                              ),
+                              Gap(20),
+                              TextFieldRow(
+                                text: "",
+                                controller: foodController,
+                                icon: IconProvider.food.buildImageUrl(),
+                                title: "Callories",
+                              ),
+                            ]),
                       ),
                     ],
                   )),
@@ -396,4 +437,75 @@ void addStatusPopup(BuildContext context) {
       );
     },
   );
+}
+
+class TextFieldRow extends StatelessWidget {
+  final String text;
+  final TextEditingController controller;
+  final String icon;
+  final String title;
+
+  const TextFieldRow({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.text,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: getWidth(context, percent: 1),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AppIcon(
+            asset: icon,
+            width: 40,
+          ),
+          Gap(10),
+          Text(title,
+              style: TextStyle(
+                fontFamily: 'Mulish',
+                fontSize: 24,
+                color: Color(0xFF741B00),
+              )),
+          Gap(10),
+          SizedBox(
+            width: getWidth(context, percent: 0.3),
+            child: CupertinoTextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              onTapOutside: (event) {
+                FocusScope.of(context).unfocus();
+              },
+              suffix: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontFamily: "Boleh",
+                        color: const Color(0xFFFFD64E))),
+              ),
+              style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: "Boleh",
+                  color: const Color(0xFFFFD64E)),
+              textAlign: TextAlign.center,
+              padding: EdgeInsets.symmetric(
+                vertical: getWidth(context, baseSize: 18),
+              ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(IconProvider.fieldBack.buildImageUrl()),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
