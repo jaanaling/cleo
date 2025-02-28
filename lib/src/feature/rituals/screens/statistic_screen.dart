@@ -28,28 +28,37 @@ class _StatisticScreenState extends State<StatisticScreen> {
     selectedIndex = widget.typeSelected;
   }
 
-  List<ChartData> getFilteredData(List<HistoryWater> waterHistory,
-      List<HistorySleep> sleepHistory, List<HistoryFood> foodHistory) {
+  List<ChartData> getFilteredData(
+    List<HistoryWater> waterHistory,
+    List<HistorySleep> sleepHistory,
+    List<HistoryFood> foodHistory,
+  ) {
     if (selectedIndex == 2) {
       return waterHistory
-          .map((historyWater) => ChartData(
-                time: historyWater.time,
-                value: historyWater.water.toDouble(),
-              ))
+          .map(
+            (historyWater) => ChartData(
+              time: historyWater.time,
+              value: historyWater.water.toDouble(),
+            ),
+          )
           .toList();
     } else if (selectedIndex == 1) {
       return sleepHistory
-          .map((historySleep) => ChartData(
-                time: historySleep.time,
-                value: historySleep.sleep.inHours.toDouble(),
-              ))
+          .map(
+            (historySleep) => ChartData(
+              time: historySleep.time,
+              value: historySleep.sleep.inHours.toDouble(),
+            ),
+          )
           .toList();
     } else {
       return foodHistory
-          .map((historyFood) => ChartData(
-                time: historyFood.time,
-                value: historyFood.food.toDouble(),
-              ))
+          .map(
+            (historyFood) => ChartData(
+              time: historyFood.time,
+              value: historyFood.food.toDouble(),
+            ),
+          )
           .toList();
     }
   }
@@ -58,11 +67,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(color: Color(0x752D0202)),
-        ),
         SafeArea(
           child: BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
@@ -70,9 +74,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                 return const Center(child: CircularProgressIndicator());
               }
               List<ChartData> chartData = getFilteredData(
-                  state.user.waterHistory,
-                  state.user.sleepHistory,
-                  state.user.foodHistory);
+                state.user.waterHistory,
+                state.user.sleepHistory,
+                state.user.foodHistory,
+              );
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,10 +85,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   AnimatedButton(
                     child: AppIcon(
                       asset: IconProvider.back.buildImageUrl(),
-                      width: getWidth(
-                        context,
-                        baseSize: 69,
-                      ),
+                      width: getWidth(context, baseSize: 69),
                       fit: BoxFit.fitWidth,
                     ),
                     onPressed: () => context.pop(),
@@ -101,7 +103,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 24),
+                        horizontal: 16,
+                        vertical: 24,
+                      ),
                       margin: const EdgeInsets.only(right: 100),
                       decoration: ShapeDecoration(
                         color: Colors.black.withOpacity(0.5600000023841858),
@@ -117,26 +121,34 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             blurRadius: 5.30,
                             offset: Offset(0, 1),
                             spreadRadius: 0,
-                          )
+                          ),
                         ],
                       ),
                       child: Row(
                         children: [
                           AppIcon(
-                            asset: selectedIndex == 1
-                                ? IconProvider.sleep.buildImageUrl()
-                                : selectedIndex == 2
+                            asset:
+                                selectedIndex == 1
+                                    ? IconProvider.sleep.buildImageUrl()
+                                    : selectedIndex == 2
                                     ? IconProvider.water.buildImageUrl()
                                     : IconProvider.food.buildImageUrl(),
-                            width: 42,
+                            height: 46,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             selectedIndex == 1
                                 ? 'Sleep History'
                                 : selectedIndex == 2
-                                    ? 'Water History'
-                                    : 'Food History',
+                                ? 'Water History'
+                                : 'Food History',
+                            style: TextStyle(
+                              color: Color(0xFFFFE4D2),
+                              fontSize: 23,
+                              fontFamily: 'Mulish',
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: -0.69,
+                            ),
                           ),
                         ],
                       ),
@@ -144,17 +156,23 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: getWidth(context, percent: 0.2), vertical: 16),
+                      horizontal: getWidth(context, percent: 0.2),
+                      vertical: 16,
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                IconProvider.switchBack.buildImageUrl(),
-                              ),
-                              fit: BoxFit.fill)),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            IconProvider.switchBack.buildImageUrl(),
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 3, horizontal: 4),
+                          vertical: 3,
+                          horizontal: 4,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -164,22 +182,28 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   isDay = true;
                                 });
                               },
-                              child: isDay
-                                  ? AppIcon(
-                                      asset: IconProvider.day.buildImageUrl(),
-                                      height: 46,
-                                    )
-                                  : Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30, vertical: 8),
-                                      child: const Text(
-                                        'Day',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
+                              child:
+                                  isDay
+                                      ? AppIcon(
+                                        asset: IconProvider.day.buildImageUrl(),
+                                        height: 46,
+                                      )
+                                      : Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 30,
+                                          vertical: 8,
+                                        ),
+                                        child: const Text(
+                                          'Day',
+                                          style: TextStyle(
+                                            color: Color(0xFF3E1900),
+                                            fontSize: 23,
+                                            fontFamily: 'Mulish',
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: -0.69,
+                                          ),
                                         ),
                                       ),
-                                    ),
                             ),
                             if (!isDay)
                               AppIcon(
@@ -195,12 +219,17 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 8),
+                                    horizontal: 30,
+                                    vertical: 8,
+                                  ),
                                   child: const Text(
                                     'Month',
                                     style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
+                                      color: Color(0xFF3E1900),
+                                      fontSize: 23,
+                                      fontFamily: 'Mulish',
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: -0.69,
                                     ),
                                   ),
                                 ),
@@ -212,17 +241,36 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    height: getHeight(context, percent: 0.35 ),
+                    height: getHeight(context, percent: 0.35),
                     child: SfCartesianChart(
                       primaryXAxis: const DateTimeAxis(),
+                      legend: Legend(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontFamily: 'Mulish',
+                          fontWeight: FontWeight.w300,
+                          height: 0.55,
+                          letterSpacing: -0.45,
+                        ),
+                      ),
                       primaryYAxis: const NumericAxis(minimum: 0, interval: 1),
                       series: [
                         LineSeries<ChartData, DateTime>(
                           dataSource: chartData,
                           xValueMapper: (ChartData data, _) => data.time,
                           yValueMapper: (ChartData data, _) => data.value,
-                          dataLabelSettings:
-                              const DataLabelSettings(isVisible: true),
+                          dataLabelSettings: const DataLabelSettings(
+                            isVisible: true,
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontFamily: 'Mulish',
+                              fontWeight: FontWeight.w300,
+                              height: 0.55,
+                              letterSpacing: -0.45,
+                            ),
+                          ),
                         ),
                       ],
                     ),

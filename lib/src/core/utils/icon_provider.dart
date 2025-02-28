@@ -52,6 +52,7 @@ enum IconProvider {
   timeOfSleep(imageName: 'time_of_sleep.png'),
   water(imageName: 'water.png'),
   waterBack(imageName: 'water_back.png'),
+  mascotAdvice(imageName: 'mascot_advice.webp'),
   waterBalance(imageName: 'water_balance.png'),
   unknown(imageName: '');
 
