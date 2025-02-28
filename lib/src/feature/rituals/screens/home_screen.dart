@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cleopatras_secrets/routes/go_router_config.dart';
 import 'package:cleopatras_secrets/routes/route_value.dart';
 import 'package:cleopatras_secrets/src/core/utils/app_icon.dart';
@@ -98,14 +100,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     AppIcon(
                                       asset: IconProvider.chart.buildImageUrl(),
-                                      width: getWidth(context, baseSize: 141),
+                                      width: 141,
                                       fit: BoxFit.fitWidth,
+                                    ),
+
+                                    RoundedPieChart(
+                                      value: user.getOverallStatus().toInt() / 100,
                                     ),
                                     GradientText(
                                       user
-                                              .getOverallStatus()
-                                              .toInt()
-                                              .toString() +
+                                          .getOverallStatus()
+                                          .toInt()
+                                          .toString() +
                                           " %",
                                       fontSize: 50,
                                     ),
@@ -510,6 +516,128 @@ void addStatusPopup(BuildContext context, User user) {
       );
     },
   );
+}
+
+class RoundedPieChart extends StatefulWidget {
+  final double value;
+
+  const RoundedPieChart({Key? key, required this.value}) : super(key: key);
+
+  @override
+  _RoundedPieChartState createState() => _RoundedPieChartState();
+}
+
+class _RoundedPieChartState extends State<RoundedPieChart>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  late double _previousValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+    _previousValue = widget.value;
+    _setupAnimation();
+  }
+
+  void _setupAnimation() {
+    _animation = Tween<double>(
+      begin: _previousValue,
+      end: widget.value,
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant RoundedPieChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.value != widget.value) {
+      _previousValue = oldWidget.value;
+      _setupAnimation();
+      _animationController.reset();
+      _animationController.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return CustomPaint(
+          size: Size(115, 115),
+          painter: PieChartPainter(_animation.value, context),
+        );
+      },
+    );
+  }
+}
+
+class PieChartPainter extends CustomPainter {
+  final double value;
+  final BuildContext context;
+
+  PieChartPainter(this.value, this.context);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double radius = size.width / 2;
+    final Offset center = Offset(size.width / 2, size.height / 2);
+
+    // Background Section (Always full circle)
+    final backgroundPaint =
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Colors.transparent, Colors.transparent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromCircle(center: center, radius: radius))
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 20;
+
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      0,
+      2 * pi,
+      false,
+      backgroundPaint,
+    );
+
+    // Foreground Section (Yellow Arc)
+    final sweepAngle = value * 2 * pi;
+    final foregroundPaint =
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFFD3070B), Color(0xFFD3070B)],
+          ).createShader(Rect.fromCircle(center: center, radius: radius))
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 20
+          ..strokeCap = StrokeCap.round;
+
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -pi / 2, // Start at top center
+      sweepAngle,
+      false,
+      foregroundPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true; // Перерисовка при изменении данных
+  }
 }
 
 class TextFieldRow extends StatelessWidget {
