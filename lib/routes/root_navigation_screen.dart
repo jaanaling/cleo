@@ -37,7 +37,7 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    IconProvider.background.buildImageUrl(),
+      route != '/rituals/ritual'?  IconProvider.background.buildImageUrl(): IconProvider.bluredBackground.buildImageUrl(),
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -46,7 +46,7 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
           ),
           widget.navigationShell,
           Visibility(
-            visible: route != '/articles/article',
+            visible: route != '/articles/article' && route != '/rituals/ritual',
             child: AnimatedBottomBar(onTap: (index) {
               switch (index) {
                 case 0:

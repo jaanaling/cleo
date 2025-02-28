@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>We use your device's advertising identifier (IDFA) to provide a more relevant advertising experience and to analyze the effectiveness of our marketing campaigns.</string>
 </dict>
 </plist>

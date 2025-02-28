@@ -34,166 +34,271 @@ class _RitualsScreenState extends State<RitualsScreen> {
             .where((test) => test.daytime == daytime)
             .where((test) => test.title.contains(_controller.text) )
             .toList();
-        return Column(
+        return Stack(
           children: [
-            SizedBox(width: getWidth(context, percent: 0.6), child: AppTextField(controller: _controller)),
-            Gap(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedButton(
-                  onPressed: () {
-                    {
-                      setState(() {
-                        daytime = 1;
-                      });
-                    }
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AppIcon(
-                        asset: daytime == 1
-                            ? IconProvider.greenButton.buildImageUrl()
-                            : IconProvider.blueButton.buildImageUrl(),
-                        width: getWidth(context, percent: 0.3),
+            SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: getHeight(context, baseSize: 80)),
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Opacity(opacity: 0, child: SizedBox(width: getWidth(context, percent: 0.6), child: AppTextField(controller: _controller))),
+                    Gap(20),
+                    Opacity(opacity: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedButton(
+                            onPressed: () {
+                              {
+                                setState(() {
+                                  daytime = 1;
+                                });
+                              }
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                AppIcon(
+                                  asset: daytime == 1
+                                      ? IconProvider.greenButton.buildImageUrl()
+                                      : IconProvider.blueButton.buildImageUrl(),
+                                  width: getWidth(context, percent: 0.3),
+                                ),
+                                Text(
+                                  "morning",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),AnimatedButton(
+                            onPressed: () {
+                              {
+                                setState(() {
+                                  daytime = 2;
+                                });
+                              }
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                AppIcon(
+                                  asset: daytime == 2
+                                      ? IconProvider.greenButton.buildImageUrl()
+                                      : IconProvider.blueButton.buildImageUrl(),
+                                  width: getWidth(context, percent: 0.3),
+                                ),
+                                Text(
+                                  "day",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),AnimatedButton(
+                            onPressed: () {
+                              {
+                                setState(() {
+                                  daytime = 3;
+                                });
+                              }
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                AppIcon(
+                                  asset: daytime == 3
+                                      ? IconProvider.greenButton.buildImageUrl()
+                                      : IconProvider.blueButton.buildImageUrl(),
+                                  width: getWidth(context, percent: 0.3),
+                                ),
+                                Text(
+                                  "evening",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "morning",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),AnimatedButton(
-                  onPressed: () {
-                    {
-                      setState(() {
-                        daytime = 2;
-                      });
-                    }
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AppIcon(
-                        asset: daytime == 2
-                            ? IconProvider.greenButton.buildImageUrl()
-                            : IconProvider.blueButton.buildImageUrl(),
-                        width: getWidth(context, percent: 0.3),
-                      ),
-                      Text(
-                        "day",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),AnimatedButton(
-                  onPressed: () {
-                    {
-                      setState(() {
-                        daytime = 3;
-                      });
-                    }
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AppIcon(
-                        asset: daytime == 3
-                            ? IconProvider.greenButton.buildImageUrl()
-                            : IconProvider.blueButton.buildImageUrl(),
-                        width: getWidth(context, percent: 0.3),
-                      ),
-                      Text(
-                        "evening",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.separated(
-                itemCount: item.length, // Пример
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  final task = item[index];
-                  return Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 35),
-                        child: AppIcon(
-                          asset: IconProvider.articleButton.buildImageUrl(),
-                          width: getWidth(context, percent: 1) - 14,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    ListView.separated(
+                      itemCount: item.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        final task = item[index];
+                        return Stack(
+                          alignment: Alignment.topCenter,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
+                              padding: const EdgeInsets.only(bottom: 35),
+                              child: AppIcon(
+                                asset: IconProvider.articleButton.buildImageUrl(),
+                                width: getWidth(context, percent: 1) - 14,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppIcon(
-                                    asset: getCategoryImage(task.category),
-                                    width: getWidth(context, percent: 0.2),
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                  Gap(7),
-                                  SizedBox(
-                                    width: getWidth(context, percent: 0.5),
-                                    child: GradientText(
-                                      task.title,
-                                      fontSize: 53,
-                                      isCenter: true,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: Row(
+                                      children: [
+                                        AppIcon(
+                                          asset: getCategoryImage(task.category),
+                                          width: getWidth(context, percent: 0.2),
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                        Gap(7),
+                                        SizedBox(
+                                          width: getWidth(context, percent: 0.5),
+                                          child: GradientText(
+                                            task.title,
+                                            fontSize: 53,
+                                            isCenter: true,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
+                                  Gap(17),
+                                  Text(
+                                    task.description,
+                                    style: TextStyle(fontSize: 17),
+                                  )
                                 ],
                               ),
                             ),
-                            Gap(17),
-                            Text(
-                              task.description,
-                              style: TextStyle(fontSize: 17),
+                            Positioned(
+                              bottom: 0,
+                              right: 20,
+                              child: AnimatedButton(
+                                onPressed: () {
+                                  {
+                                    context.push(
+                                        "${RouteValue.rituals.path}/${RouteValue.ritual.path}",
+                                        extra: task);
+                                  }
+                                },
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    AppIcon(
+                                      asset: IconProvider.greenButton.buildImageUrl(),
+                                      width: getWidth(context, percent: 0.3),
+                                    ),
+                                    Text(
+                                      "Start",
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SafeArea(
+              bottom: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(width: getWidth(context, percent: 0.6), child: AppTextField(controller: _controller)),
+                  Gap(20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedButton(
+                        onPressed: () {
+                          {
+                            setState(() {
+                              daytime = 1;
+                            });
+                          }
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: daytime == 1
+                                  ? IconProvider.greenButton.buildImageUrl()
+                                  : IconProvider.blueButton.buildImageUrl(),
+                              width: getWidth(context, percent: 0.3),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: getHeight(context, baseSize: 3)),
+                              child: Text(
+                                "morning",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),AnimatedButton(
+                        onPressed: () {
+                          {
+                            setState(() {
+                              daytime = 2;
+                            });
+                          }
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: daytime == 2
+                                  ? IconProvider.greenButton.buildImageUrl()
+                                  : IconProvider.blueButton.buildImageUrl(),
+                              width: getWidth(context, percent: 0.3),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: getHeight(context, baseSize: 3)),
+                              child: Text(
+                                "day",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),AnimatedButton(
+                        onPressed: () {
+                          {
+                            setState(() {
+                              daytime = 3;
+                            });
+                          }
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: daytime == 3
+                                  ? IconProvider.greenButton.buildImageUrl()
+                                  : IconProvider.blueButton.buildImageUrl(),
+                              width: getWidth(context, percent: 0.3),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: getHeight(context, baseSize: 3)),
+                              child: Text(
+                                "evening",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             )
                           ],
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 20,
-                        child: AnimatedButton(
-                          onPressed: () {
-                            {
-                              context.push(
-                                  "${RouteValue.rituals.path}/${RouteValue.ritual.path}",
-                                  extra: task);
-                            }
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              AppIcon(
-                                asset: IconProvider.greenButton.buildImageUrl(),
-                                width: getWidth(context, percent: 0.3),
-                              ),
-                              Text(
-                                "Start",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
-                  );
-                },
+                  ),
+                ],
               ),
             ),
           ],
@@ -241,6 +346,7 @@ class AppTextField extends StatelessWidget {
           controller: controller,
           style: TextStyle(
             fontSize: 24,
+            color: Color(0xFF510202),
           ),
           suffix: DecoratedBox(
             decoration: BoxDecoration(

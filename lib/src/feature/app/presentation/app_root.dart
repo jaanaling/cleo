@@ -22,6 +22,7 @@ class AppRoot extends StatelessWidget {
         theme: const CupertinoThemeData(
           brightness: Brightness.light,
           textTheme: CupertinoTextThemeData(textStyle: textStyle),
+          primaryColor: Color(0xFF510202),
         ),
         builder: (context, child) {
           return Theme(

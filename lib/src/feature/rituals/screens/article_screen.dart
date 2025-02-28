@@ -65,13 +65,20 @@ class ArticleScreen extends StatelessWidget {
                     
                    
                       SizedBox(
-                        height: getHeight(context, baseSize: 560),
+                        height: getHeight(context, baseSize: 559),
                         child: SingleChildScrollView(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 43, vertical: 20),
+                            padding: const EdgeInsets.only(right: 43, left: 43, top: 20, bottom: 25,),
                             child: Text(
                               article.content,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF510202),
+                                fontSize: 24,
+                                fontFamily: 'Mulish',
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.72,
+                              ),
                             ),
                           ),
                         ),

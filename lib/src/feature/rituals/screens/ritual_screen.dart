@@ -1,6 +1,7 @@
 import 'package:cleopatras_secrets/src/core/utils/app_icon.dart';
 import 'package:cleopatras_secrets/src/core/utils/icon_provider.dart';
 import 'package:cleopatras_secrets/src/core/utils/size_utils.dart';
+import 'package:cleopatras_secrets/src/core/utils/text_with_border.dart';
 import 'package:cleopatras_secrets/src/feature/rituals/bloc/user_bloc.dart';
 import 'package:cleopatras_secrets/src/feature/rituals/model/rituals.dart';
 import 'package:cleopatras_secrets/ui_kit/animated_button.dart';
@@ -29,11 +30,6 @@ class _RitualScreenState extends State<RitualScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(color: Color(0x752D0202)),
-        ),
         SingleChildScrollView(
           padding: const EdgeInsets.only(bottom: 105),
           child: SafeArea(
@@ -42,20 +38,21 @@ class _RitualScreenState extends State<RitualScreen> {
               child: Column(
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AnimatedButton(
-                          child: AppIcon(
-                            asset: IconProvider.back.buildImageUrl(),
-                            width: getWidth(context, baseSize: 69),
-                            fit: BoxFit.fitWidth,
-                          ),
-                          onPressed: () {
-                            context.pop();
-                          }),
+                        child: AppIcon(
+                          asset: IconProvider.back.buildImageUrl(),
+                          width: getWidth(context, baseSize: 69),
+                          fit: BoxFit.fitWidth,
+                        ),
+                        onPressed: () {
+                          context.pop();
+                        },
+                      ),
                       Spacer(),
                       SizedBox(
-                        width: getWidth(context, percent: 1) -
+                        width:
+                            getWidth(context, percent: 1) -
                             getWidth(context, baseSize: 69) -
                             40,
                         child: GradientText(
@@ -64,7 +61,7 @@ class _RitualScreenState extends State<RitualScreen> {
                           isCenter: true,
                         ),
                       ),
-                      Spacer()
+                      Spacer(),
                     ],
                   ),
                   Gap(36),
@@ -76,8 +73,8 @@ class _RitualScreenState extends State<RitualScreen> {
                         Gap(37),
                         ListView.separated(
                           itemCount: widget.ritual.stages.length,
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(height: 16),
+                          separatorBuilder:
+                              (context, index) => const SizedBox(height: 16),
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
@@ -97,22 +94,48 @@ class _RitualScreenState extends State<RitualScreen> {
                           ),
                         ),
                         const SizedBox(height: 30),
-                        LinearPercentIndicator(
-                          percent: currentStep < widget.ritual.stages.length
-                              ? currentStep / widget.ritual.stages.length
-                              : 1,
-                          width: 233,
-                          alignment: MainAxisAlignment.center,
-                          lineHeight: 12,
-                          backgroundColor: const Color(0xFF050A12),
-                          linearGradient: const LinearGradient(
-                            colors: [
-                              Color(0xFFFEFE61),
-                              Color(0xFF197C2F),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              AppIcon(
+                                asset:
+                                    IconProvider.progressBack.buildImageUrl(),
+                                width: getWidth(context, baseSize: 293),
+                                fit: BoxFit.fitWidth,
+                              ),
+                              if (currentStep < widget.ritual.stages.length)
+                                Positioned(
+                                  left:
+                                      -getWidth(context, baseSize: 293) *
+                                      (1 -
+                                          (currentStep /
+                                              widget
+                                                  .ritual
+                                                  .stages
+                                                  .length)), // Настроить позицию
+                                  child: AppIcon(
+                                    asset:
+                                        IconProvider.progress.buildImageUrl(),
+                                    width: getWidth(context, baseSize: 293),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                )
+                              else
+                                AppIcon(
+                                  asset: IconProvider.progress.buildImageUrl(),
+                                  width: getWidth(context, baseSize: 293),
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              AppIcon(
+                                asset:
+                                    IconProvider.progressBorder.buildImageUrl(),
+                                width: getWidth(context, baseSize: 293),
+                                fit: BoxFit.fitWidth,
+                              ),
                             ],
                           ),
-                          barRadius: const Radius.circular(32),
-                          linearStrokeCap: LinearStrokeCap.roundAll,
                         ),
                         const SizedBox(height: 35),
                         AnimatedButton(
@@ -135,10 +158,15 @@ class _RitualScreenState extends State<RitualScreen> {
                                 asset: IconProvider.greenButton.buildImageUrl(),
                                 width: getWidth(context, percent: 0.3),
                               ),
-                              Text(
-                                "Next",
-                                style: TextStyle(color: Colors.white),
-                              )
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: getHeight(context, baseSize: 3),
+                                ),
+                                child: Text(
+                                  "Next",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -162,44 +190,44 @@ class _RitualScreenState extends State<RitualScreen> {
     required bool visible,
   }) {
     return Opacity(
-        opacity: visible ? 1 : 0,
-        child: Row(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                DecoratedBox(
-                  decoration: ShapeDecoration(
-                      shape: OvalBorder(),
-                      image: DecorationImage(
-                          image: AssetImage(IconProvider.num.buildImageUrl()))),
-                  child: SizedBox(
-                    width: 53,
-                    height: 53,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: Text(
-                    '$stepNumber',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: 'Kastore'),
-                  ),
-                )
-              ],
-            ),
-            Gap(17),
-            Expanded(
-              child: Text(
-                text,
-                style: const TextStyle(
-                    color: Colors.white, fontSize: 20, fontFamily: 'Kastore'),
+      opacity: visible ? 1 : 0,
+      child: Row(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              AppIcon(
+                asset: IconProvider.num.buildImageUrl(),
+                width: getWidth(context, baseSize: 53),
+                fit: BoxFit.fitWidth,
               ),
-            )
-          ],
-        ));
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: GradientText(
+                  '$stepNumber',
+                  fontSize: 32,
+                  fontFamily: 'Mulish',
+                ),
+              ),
+            ],
+          ),
+          Gap(17),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Color(0xFFFFE4D2),
+                fontSize: 23,
+                fontFamily: 'Mulish',
+                fontWeight: FontWeight.w600,
+                height: 0.55,
+                letterSpacing: -0.69,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildFinalItem() {
@@ -208,16 +236,15 @@ class _RitualScreenState extends State<RitualScreen> {
         Container(
           width: getWidth(context, percent: 1),
           height: getHeight(context, percent: 1),
-          decoration: BoxDecoration(color: Color.fromARGB(117, 0, 0, 0)),
+          decoration: BoxDecoration(color: Color.fromARGB(218, 11, 1, 1)),
         ),
         Positioned(
           bottom: -100,
-      
+
           child: Image.asset(
             IconProvider.mascot.buildImageUrl(),
             width: getWidth(context, percent: 1),
             height: getHeight(context, percent: 1),
-           
           ),
         ),
         Positioned(
@@ -226,7 +253,8 @@ class _RitualScreenState extends State<RitualScreen> {
           right: 0,
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: getWidth(context, percent: 0.1)),
+              horizontal: getWidth(context, percent: 0.1),
+            ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 23, vertical: 12),
               child: GradientText(
@@ -243,7 +271,8 @@ class _RitualScreenState extends State<RitualScreen> {
           right: 0,
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: getWidth(context, percent: 0.2)),
+              horizontal: getWidth(context, percent: 0.2),
+            ),
             child: GestureDetector(
               onTap: () {
                 context.pop();
@@ -255,10 +284,13 @@ class _RitualScreenState extends State<RitualScreen> {
                     asset: IconProvider.greenButton.buildImageUrl(),
                     width: getWidth(context, percent: 0.3),
                   ),
-                  Text(
-                    "Finish",
-                    style: TextStyle(color: Colors.white),
-                  )
+                  Padding(
+                    padding: EdgeInsets.only(bottom: getHeight(context, baseSize: 3)),
+                    child: Text(
+                      "Finish",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -214,112 +214,94 @@ void _showAlertDialog(
     useSafeArea: false,
     barrierDismissible: false,
     builder: (context) {
-      return MediaQuery(
-        data: MediaQuery.of(context).removeViewInsets(removeBottom: true),
-        child: Dialog(
-          insetPadding: EdgeInsets.zero,
-          backgroundColor: Colors.transparent,
-          child: StatefulBuilder(
-            builder: (context, StateSetter setState) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Gap(20),
-                AnimatedButton(
-                  child: AppIcon(
-                    asset: IconProvider.closeRounded.buildImageUrl(),
-                    width: getWidth(
-                      context,
-                      baseSize: 69,
-                    ),
-                    fit: BoxFit.fitWidth,
+      return Dialog(
+        insetPadding: EdgeInsets.zero,
+        backgroundColor: Colors.transparent,
+        child: StatefulBuilder(
+          builder: (context, StateSetter setState) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(20),
+              AnimatedButton(
+                child: AppIcon(
+                  asset: IconProvider.closeRounded.buildImageUrl(),
+                  width: getWidth(
+                    context,
+                    baseSize: 69,
                   ),
-                  onPressed: () => context.pop(),
+                  fit: BoxFit.fitWidth,
                 ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Padding(
+                onPressed: () => context.pop(),
+              ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      30,
+                      40,
+                      30,
+                      getHeight(context, baseSize: 42),
+                    ),
+                    child: AppIcon(
+                      asset: IconProvider.adviceBack.buildImageUrl(),
+                      // height: getHeight(context, baseSize: 461),
+                      width: getWidth(context, baseSize: 310),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                  SizedBox(
+                    height: getHeight(context, baseSize: 544),
+                    child: SingleChildScrollView(
                       padding: EdgeInsets.fromLTRB(
+                        60,
                         30,
-                        40,
-                        30,
-                        getHeight(context, baseSize: 42),
+                        60,
+                        getHeight(context, baseSize: 350),
                       ),
-                      child: AppIcon(
-                        asset: IconProvider.adviceBack.buildImageUrl(),
-                        // height: getHeight(context, baseSize: 461),
-                        width: getWidth(context, baseSize: 310),
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                    SizedBox(
-                      height: getHeight(context, baseSize: 544),
-                      child: SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(
-                          60,
-                          30,
-                          60,
-                          getHeight(context, baseSize: 350),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: GradientText(
-                                advices[selectedIndex].title,
-                                isCenter: true,
-                                fontSize: 65,
-                              ),
-                            ),
-                            Gap(20),
-                            Text(
-                              advices[selectedIndex].content,
-                              style: TextStyle(
-                                fontSize: 31,
-                                fontFamily: 'Mulish',
-                                color: Color(0xFF783200),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: -getHeight(context, baseSize: 400),
-                      child: AppIcon(
-                        asset: IconProvider.mascot.buildImageUrl(),
-                        height: getHeight(context, baseSize: 700),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: getHeight(context, baseSize: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Transform.rotate(
-                            angle: 3.14,
-                            child: AnimatedButton(
-                              onPressed: () {
-                                if (selectedIndex > 0) {
-                                  setState(() {
-                                    selectedIndex--;
-                                  });
-                                }
-                              },
-                              child: AppIcon(
-                                asset: IconProvider.arrow.buildImageUrl(),
-                                width: getWidth(context, baseSize: 69),
-                                fit: BoxFit.fitWidth,
-                              ),
+                          Center(
+                            child: GradientText(
+                              advices[selectedIndex].title,
+                              isCenter: true,
+                              fontSize: 65,
                             ),
                           ),
-                          Gap(getWidth(context, baseSize: 130)),
-                          AnimatedButton(
+                          Gap(20),
+                          Text(
+                            advices[selectedIndex].content,
+                            style: TextStyle(
+                              fontSize: 31,
+                              fontFamily: 'Mulish',
+                              color: Color(0xFF783200),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -getHeight(context, baseSize: 400),
+                    child: AppIcon(
+                      asset: IconProvider.mascot.buildImageUrl(),
+                      height: getHeight(context, baseSize: 700),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: getHeight(context, baseSize: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Transform.rotate(
+                          angle: 3.14,
+                          child: AnimatedButton(
                             onPressed: () {
-                              if (selectedIndex < advices.length - 1) {
+                              if (selectedIndex > 0) {
                                 setState(() {
-                                  selectedIndex++;
+                                  selectedIndex--;
                                 });
                               }
                             },
@@ -329,13 +311,28 @@ void _showAlertDialog(
                               fit: BoxFit.fitWidth,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        Gap(getWidth(context, baseSize: 130)),
+                        AnimatedButton(
+                          onPressed: () {
+                            if (selectedIndex < advices.length - 1) {
+                              setState(() {
+                                selectedIndex++;
+                              });
+                            }
+                          },
+                          child: AppIcon(
+                            asset: IconProvider.arrow.buildImageUrl(),
+                            width: getWidth(context, baseSize: 69),
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       );

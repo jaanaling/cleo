@@ -37,6 +37,7 @@ enum IconProvider {
   privacy(imageName: 'privacy.png'),
   progress(imageName: 'progress.png'),
   progressBack(imageName: 'progress_back.png'),
+  progressBorder(imageName: 'progress_border.png'),
   search(imageName: 'search.png'),
   searchPanel(imageName: 'search_panel.png'),
   selfCare(imageName: 'self_care.png'),
