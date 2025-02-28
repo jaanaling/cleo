@@ -55,8 +55,8 @@ class User {
       water: map['water'] as int,
       food: map['food'] as int,
       sleep: Duration(
-        hours: map['sleep_hours'],
-        minutes: map['sleep_minutes'],
+        hours: map['sleep_hours'] as int,
+        minutes: map['sleep_minutes'] as int,
       ),
       waterHistory: List<HistoryWater>.from(
         (map['waterHistory'] as List<dynamic>).map<HistoryWater>(
@@ -256,8 +256,8 @@ class HistorySleep {
     return HistorySleep(
       time: DateTime.fromMillisecondsSinceEpoch(map['time'] as int),
       sleep: Duration(
-        hours: map['sleep_hours'],
-        minutes: map['sleep_minutes'],
+        hours: map['sleep_hours'] as int,
+        minutes: map['sleep_minutes'] as int,
       ),
     );
   }

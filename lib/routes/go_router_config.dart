@@ -35,32 +35,39 @@ GoRouter buildGoRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
                 path: RouteValue.home.path,
-                builder: (context, state) => HomeScreen(key: UniqueKey()),
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: HomeScreen(key: UniqueKey())),
                 routes: [
                   GoRoute(
                     path: RouteValue.statistic.path,
-                    builder: (context, state) =>
-                        StatisticScreen(key: UniqueKey()),
+                    pageBuilder: (context, state) => NoTransitionPage(
+                        child: StatisticScreen(key: UniqueKey())),
                   ),
                 ]),
             GoRoute(
                 path: RouteValue.articles.path,
-                builder: (context, state) => ArticlesScreen(key: UniqueKey()),
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: ArticlesScreen(key: UniqueKey())),
                 routes: [
                   GoRoute(
                     path: RouteValue.article.path,
-                    builder: (context, state) => ArticleScreen(
-                        key: UniqueKey(), article: state.extra as Articles),
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      child: ArticleScreen(
+                          key: UniqueKey(), article: state.extra as Articles),
+                    ),
                   ),
                 ]),
             GoRoute(
                 path: RouteValue.rituals.path,
-                builder: (context, state) => RitualsScreen(key: UniqueKey()),
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: RitualsScreen(key: UniqueKey())),
                 routes: [
                   GoRoute(
                     path: RouteValue.ritual.path,
-                    builder: (context, state) => RitualScreen(
-                        key: UniqueKey(), ritual: state.extra as Rituals),
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      child: RitualScreen(
+                          key: UniqueKey(), ritual: state.extra as Rituals),
+                    ),
                   ),
                 ]),
           ],

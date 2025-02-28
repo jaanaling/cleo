@@ -19,8 +19,22 @@ class AnimatedBottomBar extends StatefulWidget {
 }
 
 class _AnimatedBottomBarState extends State<AnimatedBottomBar> {
+
+int selectedIndex = 0;
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedIndex = widget.index;
+  }
+
   void _onItemTapped(int index) {
-    widget.onTap(index);
+    setState(() {
+    widget.onTap(index);   
+    selectedIndex = index;
+     });
+    
   }
 
   @override
@@ -57,7 +71,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> {
           alignment: Alignment.center,
           children: [
             Visibility(
-              visible: widget.index == index,
+              visible: selectedIndex == index,
               child: AppIcon(
                 asset: IconProvider.bottomBarSelected.buildImageUrl(),
                 width: getWidth(context, baseSize: 120),

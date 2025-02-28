@@ -11,29 +11,23 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textStyle = TextStyle(
+      fontFamily: 'Mulish',
+      fontSize: 24,
+      color: Color(0xFFFFE5D2),
+    );
     return BlocProvider(
       create: (context) => UserBloc()..add(UserLoadData()),
       child: CupertinoApp.router(
         theme: const CupertinoThemeData(
           brightness: Brightness.light,
-          textTheme: CupertinoTextThemeData(
-            textStyle: TextStyle(
-              fontFamily: 'Bur',
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF510202),
-            ),
-          ),
+          textTheme: CupertinoTextThemeData(textStyle: textStyle),
         ),
         builder: (context, child) {
           return Theme(
             data: ThemeData(
               textTheme: const TextTheme(
-                bodyLarge: TextStyle(
-                  fontFamily: 'Mulish',
-                  fontSize: 24,
-                  color: Color(0xFFFFE5D2),
-                ),
+                bodyLarge: textStyle,
               ),
             ),
             child: child!,

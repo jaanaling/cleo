@@ -1,3 +1,4 @@
+import 'package:cleopatras_secrets/routes/go_router_config.dart';
 import 'package:cleopatras_secrets/src/core/utils/app_icon.dart';
 import 'package:cleopatras_secrets/src/core/utils/icon_provider.dart';
 import 'package:cleopatras_secrets/src/core/utils/size_utils.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../routes/root_navigation_screen.dart';
 
@@ -20,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int typeSelected = 1;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
@@ -34,13 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.bottomCenter,
               children: [
                 Positioned(
-                    bottom: -getHeight(context, baseSize: 40),
-                    left: 0,
-                    child: AppIcon(
-                      asset: IconProvider.mascot.buildImageUrl(),
-                      height: getHeight(context, baseSize: 778),
-                      fit: BoxFit.fitHeight,
-                    )),
+                  bottom: -getHeight(context, baseSize: 40),
+                  left: 0,
+                  child: AppIcon(
+                    asset: IconProvider.mascot.buildImageUrl(),
+                    height: getHeight(context, baseSize: 778),
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
                 SafeArea(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,40 +59,54 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 AnimatedButton(
-                                    child: AppIcon(
-                                      asset: IconProvider.statistic
-                                          .buildImageUrl(),
-                                      width: getWidth(context, baseSize: 69),
-                                      fit: BoxFit.fitWidth,
-                                    ),
-                                    onPressed: () {}),
+                                  child: AppIcon(
+                                    asset:
+                                        IconProvider.statistic.buildImageUrl(),
+                                    width: getWidth(context, baseSize: 69),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  onPressed: () {},
+                                ),
                                 Gap(10),
                                 AnimatedButton(
-                                    child: AppIcon(
-                                      asset:
-                                          IconProvider.advice.buildImageUrl(),
-                                      width: getWidth(context, baseSize: 69),
-                                      fit: BoxFit.fitWidth,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        isAdviceVisible = true;
-                                      });
-                                    })
+                                  child: AppIcon(
+                                    asset: IconProvider.advice.buildImageUrl(),
+                                    width: getWidth(context, baseSize: 69),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  onPressed: () {
+                                    _showAlertDialog(context, state.advice);
+                                  },
+                                ),
                               ],
                             ),
                             Spacer(),
-                            Stack(
-                              alignment: Alignment.center,
+                            Column(
                               children: [
-                                AppIcon(
-                                  asset: IconProvider.chart.buildImageUrl(),
-                                  width: getWidth(context, baseSize: 141),
-                                  fit: BoxFit.fitWidth,
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    AppIcon(
+                                      asset: IconProvider.chart.buildImageUrl(),
+                                      width: getWidth(context, baseSize: 141),
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                    GradientText(
+                                      user
+                                              .getOverallStatus()
+                                              .toInt()
+                                              .toString() +
+                                          " %",
+                                      fontSize: 50,
+                                    ),
+                                  ],
                                 ),
-                                Text(user.getOverallStatus().toString()),
+                                GradientText(
+                                  "General\n Condition",
+                                  fontSize: 40,
+                                ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -95,58 +114,61 @@ class _HomeScreenState extends State<HomeScreen> {
                         flex: 2,
                       ),
                       AnimatedButton(
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              AppIcon(
-                                asset: IconProvider.sleepBack.buildImageUrl(),
-                                width: getWidth(context, baseSize: 76),
-                                fit: BoxFit.fitWidth,
-                              ),
-                              AppIcon(
-                                asset: IconProvider.sleep.buildImageUrl(),
-                                width: getWidth(context, baseSize: 31),
-                                fit: BoxFit.fitWidth,
-                              )
-                            ],
-                          ),
-                          onPressed: () {}),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: IconProvider.sleepBack.buildImageUrl(),
+                              width: getWidth(context, baseSize: 76),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            AppIcon(
+                              asset: IconProvider.sleep.buildImageUrl(),
+                              width: getWidth(context, baseSize: 31),
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ],
+                        ),
+                        onPressed: () {},
+                      ),
                       Gap(14),
                       AnimatedButton(
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              AppIcon(
-                                asset: IconProvider.waterBack.buildImageUrl(),
-                                width: getWidth(context, baseSize: 76),
-                                fit: BoxFit.fitWidth,
-                              ),
-                              AppIcon(
-                                asset: IconProvider.water.buildImageUrl(),
-                                width: getWidth(context, baseSize: 31),
-                                fit: BoxFit.fitWidth,
-                              )
-                            ],
-                          ),
-                          onPressed: () {}),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: IconProvider.waterBack.buildImageUrl(),
+                              width: getWidth(context, baseSize: 76),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            AppIcon(
+                              asset: IconProvider.water.buildImageUrl(),
+                              width: getWidth(context, baseSize: 31),
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ],
+                        ),
+                        onPressed: () {},
+                      ),
                       Gap(14),
                       AnimatedButton(
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              AppIcon(
-                                asset: IconProvider.foodBack.buildImageUrl(),
-                                width: getWidth(context, baseSize: 76),
-                                fit: BoxFit.fitWidth,
-                              ),
-                              AppIcon(
-                                asset: IconProvider.food.buildImageUrl(),
-                                width: getWidth(context, baseSize: 31),
-                                fit: BoxFit.fitWidth,
-                              )
-                            ],
-                          ),
-                          onPressed: () {}),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AppIcon(
+                              asset: IconProvider.foodBack.buildImageUrl(),
+                              width: getWidth(context, baseSize: 76),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            AppIcon(
+                              asset: IconProvider.food.buildImageUrl(),
+                              width: getWidth(context, baseSize: 31),
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ],
+                        ),
+                        onPressed: () {},
+                      ),
                       Spacer(
                         flex: 1,
                       ),
@@ -157,13 +179,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 18,
                   bottom: getHeight(context, baseSize: 126),
                   child: AnimatedButton(
-                      child: AppIcon(
-                        asset: IconProvider.addRounded.buildImageUrl(),
-                        width: getWidth(context, baseSize: 69),
-                        fit: BoxFit.fitWidth,
-                      ),
-                      onPressed: () {}),
-                )
+                    child: AppIcon(
+                      asset: IconProvider.addRounded.buildImageUrl(),
+                      width: getWidth(context, baseSize: 69),
+                      fit: BoxFit.fitWidth,
+                    ),
+                    onPressed: () {
+                      addStatusPopup(context);
+                    },
+                  ),
+                ),
               ],
             ),
           ],
@@ -173,60 +198,202 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class AdviceScreen extends StatelessWidget {
-  final List<Advice> advices;
-  final VoidCallback onClose;
-  const AdviceScreen({super.key, required this.advices, required this.onClose});
+void _showAlertDialog(
+  BuildContext context,
+  List<Advice> advices,
+) {
+  int selectedIndex = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AnimatedButton(
-              child: AppIcon(
-                asset: IconProvider.closeRounded.buildImageUrl(),
-                width: getWidth(
-                  context,
-                  baseSize: 69,
+  showDialog(
+    context: context,
+    useSafeArea: false,
+    barrierDismissible: false,
+    builder: (context) {
+      return MediaQuery(
+        data: MediaQuery.of(context).removeViewInsets(removeBottom: true),
+        child: Dialog(
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          child: StatefulBuilder(
+            builder: (context, StateSetter setState) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gap(20),
+                AnimatedButton(
+                  child: AppIcon(
+                    asset: IconProvider.closeRounded.buildImageUrl(),
+                    width: getWidth(
+                      context,
+                      baseSize: 69,
+                    ),
+                    fit: BoxFit.fitWidth,
+                  ),
+                  onPressed: () => context.pop(),
                 ),
-                fit: BoxFit.fitWidth,
-              ),
-              onPressed: onClose),
-          Gap(20),
-          Stack(
-            children: [
-              AppIcon(
-                asset: IconProvider.adviceBack.buildImageUrl(),
-                // height: getHeight(context, baseSize: 461),
-                width: getWidth(context, baseSize: 310),
-                fit: BoxFit.fitWidth,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Center(
-                      child: GradientText(
-                        advices.first.title,
-                        isCenter: true,
-                        fontSize: 65,
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        30,
+                        40,
+                        30,
+                        getHeight(context, baseSize: 42),
+                      ),
+                      child: AppIcon(
+                        asset: IconProvider.adviceBack.buildImageUrl(),
+                        // height: getHeight(context, baseSize: 461),
+                        width: getWidth(context, baseSize: 310),
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
-                    Gap(20),
-                    Text(
-                      advices.first.content,
-                      style: TextStyle(fontSize: 31),
-                    )
+                    SizedBox(
+                      height: getHeight(context, baseSize: 544),
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.fromLTRB(
+                          60,
+                          30,
+                          60,
+                          getHeight(context, baseSize: 350),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: GradientText(
+                                advices[selectedIndex].title,
+                                isCenter: true,
+                                fontSize: 65,
+                              ),
+                            ),
+                            Gap(20),
+                            Text(
+                              advices[selectedIndex].content,
+                              style: TextStyle(
+                                fontSize: 31,
+                                fontFamily: 'Mulish',
+                                color: Color(0xFF783200),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -getHeight(context, baseSize: 400),
+                      child: AppIcon(
+                        asset: IconProvider.mascot.buildImageUrl(),
+                        height: getHeight(context, baseSize: 700),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: getHeight(context, baseSize: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Transform.rotate(
+                            angle: 3.14,
+                            child: AnimatedButton(
+                              onPressed: () {
+                                if (selectedIndex > 0) {
+                                  setState(() {
+                                    selectedIndex--;
+                                  });
+                                }
+                              },
+                              child: AppIcon(
+                                asset: IconProvider.arrow.buildImageUrl(),
+                                width: getWidth(context, baseSize: 69),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                          ),
+                          Gap(getWidth(context, baseSize: 130)),
+                          AnimatedButton(
+                            onPressed: () {
+                              if (selectedIndex < advices.length - 1) {
+                                setState(() {
+                                  selectedIndex++;
+                                });
+                              }
+                            },
+                            child: AppIcon(
+                              asset: IconProvider.arrow.buildImageUrl(),
+                              width: getWidth(context, baseSize: 69),
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void addStatusPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    useSafeArea: false,
+    barrierDismissible: false,
+    builder: (context) {
+      return MediaQuery(
+        data: MediaQuery.of(context).removeViewInsets(removeBottom: true),
+        child: Dialog(
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          child: StatefulBuilder(
+              builder: (context, StateSetter setState) => Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 20),
+                        child: AnimatedButton(
+                          child: AppIcon(
+                            asset: IconProvider.closeRounded.buildImageUrl(),
+                            width: getWidth(
+                              context,
+                              baseSize: 69,
+                            ),
+                            fit: BoxFit.fitWidth,
+                          ),
+                          onPressed: () => context.pop(),
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 441,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFCE7E2E),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(36),
+                              topRight: Radius.circular(36),
+                            ),
+                          ),
+                          shadows: [
+                            BoxShadow(
+                              color: Color(0x3F002D71),
+                              blurRadius: 9.60,
+                              offset: Offset(0, 2),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+        ),
+      );
+    },
+  );
 }

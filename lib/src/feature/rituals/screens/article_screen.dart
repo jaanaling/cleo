@@ -62,6 +62,8 @@ class ArticleScreen extends StatelessWidget {
                         height: getHeight(context, baseSize: 591),
                         fit: BoxFit.fill,
                       ),
+                    
+                   
                       SizedBox(
                         height: getHeight(context, baseSize: 560),
                         child: SingleChildScrollView(

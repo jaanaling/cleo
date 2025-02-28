@@ -9,22 +9,22 @@ class AppIcon extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
+  final AlignmentGeometry? alignment;
   final BlendMode? blendMode;
 
-  const AppIcon( {
+  const AppIcon({
     super.key,
     required this.asset,
     this.color,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
+    this.alignment,
     this.blendMode,
   });
 
   @override
   Widget build(BuildContext context) {
-
-
     return asset.contains('.svg')
         ? Opacity(
             opacity: 0.97,
@@ -47,9 +47,11 @@ class AppIcon extends StatelessWidget {
                 asset,
                 width: width,
                 height: height,
+                alignment: alignment ?? Alignment.center,
                 fit: fit,
                 color: color,
-                colorBlendMode: color != null ? blendMode?? BlendMode.srcIn : null,
+                colorBlendMode:
+                    color != null ? blendMode ?? BlendMode.srcIn : null,
               )
             : Image.file(
                 File(asset),

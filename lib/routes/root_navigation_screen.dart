@@ -58,27 +58,8 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
               }
             }, index: widget.navigationShell.currentIndex,),
           ),
-          if(isAdviceVisible&&route == '/home')
-          Stack(
-            children: [
-              Positioned.fill(
-                  child: ColoredBox(color: Colors.black.withOpacity(0.8))),
-              BlocBuilder<UserBloc, UserState>(
-                builder: (context, state) {
-                  if (state is! UserLoaded) {
-                    return const CupertinoActivityIndicator();
-                  }
-                  return AdviceScreen(
-                      advices: state.advice,
-                      onClose: () {
-                        setState(() {
-                          isAdviceVisible = false;
-                        });
-                      });
-                },
-              )
-            ],
-          )
+     
+         
         ],
       ),
     );
