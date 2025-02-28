@@ -103,22 +103,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 141,
                                       fit: BoxFit.fitWidth,
                                     ),
-
                                     RoundedPieChart(
-                                      value: user.getOverallStatus().toInt() / 100,
+                                      value: (typeSelected == 1
+                                                  ? user.getSleepPercentage()
+                                                  : typeSelected == 2
+                                                      ? user
+                                                          .getWaterPercentage()
+                                                      : user
+                                                          .getFoodPercentage())
+                                              .toInt() /
+                                          100,
                                     ),
                                     GradientText(
-                                      user
-                                          .getOverallStatus()
-                                          .toInt()
-                                          .toString() +
+                                      (typeSelected == 1
+                                                  ? user.getSleepPercentage()
+                                                  : typeSelected == 2
+                                                      ? user
+                                                          .getWaterPercentage()
+                                                      : user
+                                                          .getFoodPercentage())
+                                              .toInt()
+                                              .toString() +
                                           " %",
                                       fontSize: 50,
                                     ),
                                   ],
                                 ),
                                 GradientText(
-                                  "General\n Condition",
+                                  typeSelected == 1
+                                      ? "Sleep\nCondition"
+                                      : typeSelected == 2
+                                          ? "Water\nCondition"
+                                          : "Food\nCondition",
                                   fontSize: 40,
                                 ),
                               ],
@@ -148,7 +164,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            typeSelected = 1;
+                          });
+                        },
                       ),
                       Gap(14),
                       AnimatedButton(
@@ -156,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.center,
                           children: [
                             AppIcon(
-                              asset:  user.getWaterPercentage() < 30
+                              asset: user.getWaterPercentage() < 30
                                   ? IconProvider.sleepBack.buildImageUrl()
                                   : user.getWaterPercentage() > 30 &&
                                           user.getWaterPercentage() < 70
@@ -172,7 +192,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            typeSelected = 2;
+                          });
+                        },
                       ),
                       Gap(14),
                       AnimatedButton(
@@ -196,7 +220,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            typeSelected = 3;
+                          });
+                        },
                       ),
                       Spacer(flex: 1),
                     ],
@@ -237,118 +265,117 @@ void _showAlertDialog(BuildContext context, List<Advice> advices) {
         insetPadding: EdgeInsets.zero,
         backgroundColor: Colors.transparent,
         child: StatefulBuilder(
-          builder:
-              (context, StateSetter setState) => SafeArea(
-                bottom: false,
-                child: Stack(
+          builder: (context, StateSetter setState) => SafeArea(
+            bottom: false,
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Gap(20),
+                    AnimatedButton(
+                      child: AppIcon(
+                        asset: IconProvider.closeRounded.buildImageUrl(),
+                        width: getWidth(context, baseSize: 69),
+                        fit: BoxFit.fitWidth,
+                      ),
+                      onPressed: () => context.pop(),
+                    ),
+                    Spacer(),
+                    Stack(
+                      alignment: Alignment.center,
                       children: [
-                        Gap(20),
-                        AnimatedButton(
+                        AppIcon(
+                          asset: IconProvider.adviceBack.buildImageUrl(),
+                          height: getHeight(context, baseSize: 461),
+                          fit: BoxFit.fitHeight,
+                        ),
+                        SizedBox(
+                          width: getWidth(context, baseSize: 260),
+                          height: getHeight(context, baseSize: 430),
+                          child: SingleChildScrollView(
+                            padding: EdgeInsets.only(
+                              bottom: getHeight(context, baseSize: 230),
+                            ),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  GradientText(
+                                    advices[selectedIndex].title,
+                                    isCenter: true,
+                                    fontSize: 65,
+                                  ),
+                                  Gap(20),
+                                  Text(
+                                    advices[selectedIndex].content,
+                                    style: TextStyle(
+                                      fontSize: 31,
+                                      fontFamily: 'Mulish',
+                                      color: Color(0xFF783200),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Gap(getHeight(context, baseSize: 200)),
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: AppIcon(
+                    asset: IconProvider.mascotAdvice.buildImageUrl(),
+                    height: getHeight(context, baseSize: 440),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  bottom: getHeight(context, baseSize: 71),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.diagonal3Values(-1, 1, 1),
+                        child: AnimatedButton(
+                          onPressed: () {
+                            if (selectedIndex > 0) {
+                              setState(() {
+                                selectedIndex--;
+                              });
+                            }
+                          },
                           child: AppIcon(
-                            asset: IconProvider.closeRounded.buildImageUrl(),
+                            asset: IconProvider.arrow.buildImageUrl(),
                             width: getWidth(context, baseSize: 69),
                             fit: BoxFit.fitWidth,
                           ),
-                          onPressed: () => context.pop(),
                         ),
-                        Spacer(),
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            AppIcon(
-                              asset: IconProvider.adviceBack.buildImageUrl(),
-                              height: getHeight(context, baseSize: 461),
-                              fit: BoxFit.fitHeight,
-                            ),
-                            SizedBox(
-                              width: getWidth(context, baseSize: 260),
-                              height: getHeight(context, baseSize: 430),
-                              child: SingleChildScrollView(
-                                padding: EdgeInsets.only(
-                                  bottom: getHeight(context, baseSize: 230),
-                                ),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      GradientText(
-                                        advices[selectedIndex].title,
-                                        isCenter: true,
-                                        fontSize: 65,
-                                      ),
-                                      Gap(20),
-                                      Text(
-                                        advices[selectedIndex].content,
-                                        style: TextStyle(
-                                          fontSize: 31,
-                                          fontFamily: 'Mulish',
-                                          color: Color(0xFF783200),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                      ),
+                      Gap(getWidth(context, baseSize: 130)),
+                      AnimatedButton(
+                        onPressed: () {
+                          if (selectedIndex < advices.length - 1) {
+                            setState(() {
+                              selectedIndex++;
+                            });
+                          }
+                        },
+                        child: AppIcon(
+                          asset: IconProvider.arrow.buildImageUrl(),
+                          width: getWidth(context, baseSize: 69),
+                          fit: BoxFit.fitWidth,
                         ),
-                        Gap(getHeight(context, baseSize: 200)),
-                      ],
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: AppIcon(
-                        asset: IconProvider.mascotAdvice.buildImageUrl(),
-                        height: getHeight(context, baseSize: 440),
-                        fit: BoxFit.cover,
                       ),
-                    ),
-                    Positioned(
-                      bottom: getHeight(context, baseSize: 71),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Transform(
-                            alignment: Alignment.center,
-                            transform: Matrix4.diagonal3Values(-1, 1, 1),
-                            child: AnimatedButton(
-                              onPressed: () {
-                                if (selectedIndex > 0) {
-                                  setState(() {
-                                    selectedIndex--;
-                                  });
-                                }
-                              },
-                              child: AppIcon(
-                                asset: IconProvider.arrow.buildImageUrl(),
-                                width: getWidth(context, baseSize: 69),
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ),
-                          Gap(getWidth(context, baseSize: 130)),
-                          AnimatedButton(
-                            onPressed: () {
-                              if (selectedIndex < advices.length - 1) {
-                                setState(() {
-                                  selectedIndex++;
-                                });
-                              }
-                            },
-                            child: AppIcon(
-                              asset: IconProvider.arrow.buildImageUrl(),
-                              width: getWidth(context, baseSize: 69),
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
+            ),
+          ),
         ),
       );
     },
@@ -456,15 +483,18 @@ void addStatusPopup(BuildContext context, User user) {
                                     user: user.copyWith(
                                       sleep: Duration(
                                         hours: sleepController.text != ""
-                                            ? int.parse(sleepController.text)
-                                            : 0,
+                                            ? user.sleep.inHours +
+                                                int.parse(sleepController.text)
+                                            : user.sleep.inHours,
                                       ),
                                       water: waterController.text != ""
-                                          ? int.parse(waterController.text)
-                                          : 0,
+                                          ? user.water +
+                                              int.parse(waterController.text)
+                                          : user.water,
                                       food: foodController.text != ""
-                                          ? int.parse(foodController.text)
-                                          : 0,
+                                          ? user.food +
+                                              int.parse(foodController.text)
+                                          : user.food,
                                       waterHistory: waterController.text != ""
                                           ? [
                                               ...user.waterHistory,
@@ -596,15 +626,14 @@ class PieChartPainter extends CustomPainter {
     final Offset center = Offset(size.width / 2, size.height / 2);
 
     // Background Section (Always full circle)
-    final backgroundPaint =
-        Paint()
-          ..shader = const LinearGradient(
-            colors: [Colors.transparent, Colors.transparent],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ).createShader(Rect.fromCircle(center: center, radius: radius))
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 20;
+    final backgroundPaint = Paint()
+      ..shader = const LinearGradient(
+        colors: [Colors.transparent, Colors.transparent],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(Rect.fromCircle(center: center, radius: radius))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 20;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
@@ -616,14 +645,13 @@ class PieChartPainter extends CustomPainter {
 
     // Foreground Section (Yellow Arc)
     final sweepAngle = value * 2 * pi;
-    final foregroundPaint =
-        Paint()
-          ..shader = const LinearGradient(
-            colors: [Color(0xFFD3070B), Color(0xFFD3070B)],
-          ).createShader(Rect.fromCircle(center: center, radius: radius))
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 20
-          ..strokeCap = StrokeCap.round;
+    final foregroundPaint = Paint()
+      ..shader = const LinearGradient(
+        colors: [Color(0xFFD3070B), Color(0xFFD3070B)],
+      ).createShader(Rect.fromCircle(center: center, radius: radius))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 20
+      ..strokeCap = StrokeCap.round;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
