@@ -71,7 +71,7 @@ int selectedIndex = 0;
           alignment: Alignment.center,
           children: [
             Visibility(
-              visible: selectedIndex == index,
+              visible:  widget.index == index,
               child: AppIcon(
                 asset: IconProvider.bottomBarSelected.buildImageUrl(),
                 width: getWidth(context, baseSize: 120),

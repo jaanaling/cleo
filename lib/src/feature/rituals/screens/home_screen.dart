@@ -5,6 +5,7 @@ import 'package:cleopatras_secrets/src/core/utils/icon_provider.dart';
 import 'package:cleopatras_secrets/src/core/utils/size_utils.dart';
 import 'package:cleopatras_secrets/src/feature/rituals/bloc/user_bloc.dart';
 import 'package:cleopatras_secrets/src/feature/rituals/model/advice.dart';
+import 'package:cleopatras_secrets/src/feature/rituals/model/user.dart';
 import 'package:cleopatras_secrets/ui_kit/animated_button.dart';
 import 'package:cleopatras_secrets/ui_kit/gradient_text_with_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -125,7 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.center,
                           children: [
                             AppIcon(
-                              asset: IconProvider.sleepBack.buildImageUrl(),
+                              asset: user.getSleepPercentage() < 30
+                                  ? IconProvider.sleepBack.buildImageUrl()
+                                  : user.getSleepPercentage() > 30 &&
+                                          user.getSleepPercentage() < 70
+                                      ? IconProvider.waterBack.buildImageUrl()
+                                      : IconProvider.foodBack.buildImageUrl(),
                               width: getWidth(context, baseSize: 76),
                               fit: BoxFit.fitWidth,
                             ),
@@ -144,7 +150,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.center,
                           children: [
                             AppIcon(
-                              asset: IconProvider.waterBack.buildImageUrl(),
+                              asset:  user.getWaterPercentage() < 30
+                                  ? IconProvider.sleepBack.buildImageUrl()
+                                  : user.getWaterPercentage() > 30 &&
+                                          user.getWaterPercentage() < 70
+                                      ? IconProvider.waterBack.buildImageUrl()
+                                      : IconProvider.foodBack.buildImageUrl(),
                               width: getWidth(context, baseSize: 76),
                               fit: BoxFit.fitWidth,
                             ),
@@ -163,7 +174,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.center,
                           children: [
                             AppIcon(
-                              asset: IconProvider.foodBack.buildImageUrl(),
+                              asset: user.getFoodPercentage() < 30
+                                  ? IconProvider.sleepBack.buildImageUrl()
+                                  : user.getFoodPercentage() > 30 &&
+                                          user.getFoodPercentage() < 70
+                                      ? IconProvider.waterBack.buildImageUrl()
+                                      : IconProvider.foodBack.buildImageUrl(),
                               width: getWidth(context, baseSize: 76),
                               fit: BoxFit.fitWidth,
                             ),
@@ -190,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fit: BoxFit.fitWidth,
                     ),
                     onPressed: () {
-                      addStatusPopup(context);
+                      addStatusPopup(context, user);
                     },
                   ),
                 ),
@@ -333,7 +349,7 @@ void _showAlertDialog(BuildContext context, List<Advice> advices) {
   );
 }
 
-void addStatusPopup(BuildContext context) {
+void addStatusPopup(BuildContext context, User user) {
   final TextEditingController waterController = TextEditingController();
   final TextEditingController foodController = TextEditingController();
   final TextEditingController sleepController = TextEditingController();
@@ -349,53 +365,58 @@ void addStatusPopup(BuildContext context) {
           insetPadding: EdgeInsets.zero,
           backgroundColor: Colors.transparent,
           child: StatefulBuilder(
-            builder:
-                (context, StateSetter setState) => Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 1),
-                    Container(
-                      width: double.infinity,
-                      height: 441,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFCE7E2E),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(36),
-                            topRight: Radius.circular(36),
+            builder: (context, StateSetter setState) => Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 1,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 441,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFCE7E2E),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(36),
+                        topRight: Radius.circular(36),
+                      ),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x3F002D71),
+                        blurRadius: 9.60,
+                        offset: Offset(0, 2),
+                        spreadRadius: 0,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 20,
+                          ),
+                          child: AnimatedButton(
+                            child: AppIcon(
+                              asset: IconProvider.close.buildImageUrl(),
+                              width: getWidth(
+                                context,
+                                baseSize: 30,
+                              ),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            onPressed: () => context.pop(),
                           ),
                         ),
-                        shadows: [
-                          BoxShadow(
-                            color: Color(0x3F002D71),
-                            blurRadius: 9.60,
-                            offset: Offset(0, 2),
-                            spreadRadius: 0,
-                          ),
-                        ],
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Column(
                         children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 30,
-                                vertical: 20,
-                              ),
-                              child: AnimatedButton(
-                                child: AppIcon(
-                                  asset: IconProvider.close.buildImageUrl(),
-                                  width: getWidth(context, baseSize: 30),
-                                  fit: BoxFit.fitWidth,
-                                ),
-                                onPressed: () => context.pop(),
-                              ),
-                            ),
-                          ),
                           TextFieldRow(
                             text: "h",
                             controller: sleepController,
@@ -418,9 +439,72 @@ void addStatusPopup(BuildContext context) {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      AnimatedButton(
+                          child: AppIcon(
+                            asset: IconProvider.add.buildImageUrl(),
+                            height: 82,
+                          ),
+                          onPressed: () {
+                            context.read<UserBloc>().add(
+                                  UserUpdateData(
+                                    user: user.copyWith(
+                                      sleep: Duration(
+                                        hours: sleepController.text != ""
+                                            ? int.parse(sleepController.text)
+                                            : 0,
+                                      ),
+                                      water: waterController.text != ""
+                                          ? int.parse(waterController.text)
+                                          : 0,
+                                      food: foodController.text != ""
+                                          ? int.parse(foodController.text)
+                                          : 0,
+                                      waterHistory: waterController.text != ""
+                                          ? [
+                                              ...user.waterHistory,
+                                              HistoryWater(
+                                                time: DateTime.now(),
+                                                water: int.parse(
+                                                  waterController.text,
+                                                ),
+                                              ),
+                                            ]
+                                          : user.waterHistory,
+                                      foodHistory: foodController.text != ""
+                                          ? [
+                                              ...user.foodHistory,
+                                              ...user.foodHistory,
+                                              HistoryFood(
+                                                time: DateTime.now(),
+                                                food: int.parse(
+                                                  foodController.text,
+                                                ),
+                                              ),
+                                            ]
+                                          : user.foodHistory,
+                                      sleepHistory: sleepController.text != ""
+                                          ? [
+                                              ...user.sleepHistory,
+                                              HistorySleep(
+                                                time: DateTime.now(),
+                                                sleep: Duration(
+                                                  hours: int.parse(
+                                                    sleepController.text,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]
+                                          : user.sleepHistory,
+                                    ),
+                                  ),
+                                );
+                            context.pop();
+                          }),
+                    ],
+                  ),
                 ),
+              ],
+            ),
           ),
         ),
       );

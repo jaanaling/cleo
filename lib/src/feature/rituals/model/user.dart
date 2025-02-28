@@ -47,7 +47,7 @@ class User {
     final foodStatus = getFoodPercentage();
     final sleepStatus = getSleepPercentage();
 
-    return (waterStatus + foodStatus + sleepStatus) / 3;
+    return ((waterStatus + foodStatus + sleepStatus) / 3) ;
   }
 
   factory User.fromMap(Map<String, dynamic> map) {

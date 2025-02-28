@@ -10,6 +10,7 @@ import '../src/feature/rituals/bloc/user_bloc.dart';
 import '../src/feature/rituals/screens/home_screen.dart';
 
 bool isAdviceVisible = false;
+int gindex = 0;
 
 class RootNavigationScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -27,6 +28,7 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final route = widget.navigationShell.shellRouteContext.routerState.fullPath;
+
     return CupertinoPageScaffold(
       resizeToAvoidBottomInset: false,
       child: Stack(
@@ -37,7 +39,9 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-      route != '/rituals/ritual' && route != '/home/detailed'?  IconProvider.background.buildImageUrl(): IconProvider.bluredBackground.buildImageUrl(),
+                    route != '/rituals/ritual' && route != '/home/detailed'
+                        ? IconProvider.background.buildImageUrl()
+                        : IconProvider.bluredBackground.buildImageUrl(),
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -46,20 +50,27 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
           ),
           widget.navigationShell,
           Visibility(
-            visible: route != '/articles/article' && route != '/rituals/ritual' && route != '/home/detailed',
-            child: AnimatedBottomBar(onTap: (index) {
-              switch (index) {
-                case 0:
-                  context.go(RouteValue.home.path);
-                case 1:
-                  context.go(RouteValue.articles.path);
-                case 2:
-                  context.go(RouteValue.rituals.path);
-              }
-            }, index: widget.navigationShell.currentIndex,),
+            visible: route != '/articles/article' &&
+                route != '/rituals/ritual' &&
+                route != '/home/detailed',
+            child: AnimatedBottomBar(
+              onTap: (index) {
+                switch (index) {
+                  case 0:
+                    context.go(RouteValue.home.path);
+                    gindex = 0;
+
+                  case 1:
+                    context.go(RouteValue.articles.path);
+                    gindex = 1;
+                  case 2:
+                    context.go(RouteValue.rituals.path);
+                    gindex = 2;
+                }
+              },
+              index: gindex,
+            ),
           ),
-     
-         
         ],
       ),
     );

@@ -29,37 +29,81 @@ class _StatisticScreenState extends State<StatisticScreen> {
   }
 
   List<ChartData> getFilteredData(
-    List<HistoryWater> waterHistory,
-    List<HistorySleep> sleepHistory,
-    List<HistoryFood> foodHistory,
-  ) {
-    if (selectedIndex == 2) {
-      return waterHistory
-          .map(
-            (historyWater) => ChartData(
-              time: historyWater.time,
-              value: historyWater.water.toDouble(),
-            ),
-          )
-          .toList();
-    } else if (selectedIndex == 1) {
-      return sleepHistory
-          .map(
-            (historySleep) => ChartData(
-              time: historySleep.time,
-              value: historySleep.sleep.inHours.toDouble(),
-            ),
-          )
-          .toList();
+      List<HistoryWater> waterHistory,
+      List<HistorySleep> sleepHistory,
+      List<HistoryFood> foodHistory,
+      bool isDaySelected) {
+    DateTime now = DateTime.now();
+
+    if (!isDaySelected) {
+      // Filter for the entire month
+      if (selectedIndex == 2) {
+        return waterHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month)
+            .map((historyWater) => ChartData(
+                  time: historyWater.time,
+                  value: historyWater.water.toDouble(),
+                ))
+            .toList();
+      } else if (selectedIndex == 1) {
+        return sleepHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month)
+            .map((historySleep) => ChartData(
+                  time: historySleep.time,
+                  value: historySleep.sleep.inHours.toDouble(),
+                ))
+            .toList();
+      } else {
+        return foodHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month)
+            .map((historyFood) => ChartData(
+                  time: historyFood.time,
+                  value: historyFood.food.toDouble(),
+                ))
+            .toList();
+      }
     } else {
-      return foodHistory
-          .map(
-            (historyFood) => ChartData(
-              time: historyFood.time,
-              value: historyFood.food.toDouble(),
-            ),
-          )
-          .toList();
+      // Filter for the current day
+      if (selectedIndex == 2) {
+        return waterHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month &&
+                historyWater.time.day == now.day)
+            .map((historyWater) => ChartData(
+                  time: historyWater.time,
+                  value: historyWater.water.toDouble(),
+                ))
+            .toList();
+      } else if (selectedIndex == 1) {
+        return sleepHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month &&
+                historyWater.time.day == now.day)
+            .map((historySleep) => ChartData(
+                  time: historySleep.time,
+                  value: historySleep.sleep.inHours.toDouble(),
+                ))
+            .toList();
+      } else {
+        return foodHistory
+            .where((historyWater) =>
+                historyWater.time.year == now.year &&
+                historyWater.time.month == now.month &&
+                historyWater.time.day == now.day)
+            .map((historyFood) => ChartData(
+                  time: historyFood.time,
+                  value: historyFood.food.toDouble(),
+                ))
+            .toList();
+      }
     }
   }
 
@@ -74,10 +118,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                 return const Center(child: CircularProgressIndicator());
               }
               List<ChartData> chartData = getFilteredData(
-                state.user.waterHistory,
-                state.user.sleepHistory,
-                state.user.foodHistory,
-              );
+                  state.user.waterHistory,
+                  state.user.sleepHistory,
+                  state.user.foodHistory,
+                  isDay);
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,10 +171,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                       child: Row(
                         children: [
                           AppIcon(
-                            asset:
-                                selectedIndex == 1
-                                    ? IconProvider.sleep.buildImageUrl()
-                                    : selectedIndex == 2
+                            asset: selectedIndex == 1
+                                ? IconProvider.sleep.buildImageUrl()
+                                : selectedIndex == 2
                                     ? IconProvider.water.buildImageUrl()
                                     : IconProvider.food.buildImageUrl(),
                             height: 46,
@@ -140,8 +183,8 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             selectedIndex == 1
                                 ? 'Sleep History'
                                 : selectedIndex == 2
-                                ? 'Water History'
-                                : 'Food History',
+                                    ? 'Water History'
+                                    : 'Food History',
                             style: TextStyle(
                               color: Color(0xFFFFE4D2),
                               fontSize: 23,
@@ -156,9 +199,8 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: getWidth(context, percent: 0.2),
-                      vertical: 16,
-                    ),
+                        horizontal: getWidth(context, percent: 0.2),
+                        vertical: 16),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -182,28 +224,27 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   isDay = true;
                                 });
                               },
-                              child:
-                                  isDay
-                                      ? AppIcon(
-                                        asset: IconProvider.day.buildImageUrl(),
-                                        height: 46,
-                                      )
-                                      : Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 30,
-                                          vertical: 8,
-                                        ),
-                                        child: const Text(
-                                          'Day',
-                                          style: TextStyle(
-                                            color: Color(0xFF3E1900),
-                                            fontSize: 23,
-                                            fontFamily: 'Mulish',
-                                            fontWeight: FontWeight.w600,
-                                            letterSpacing: -0.69,
-                                          ),
+                              child: isDay
+                                  ? AppIcon(
+                                      asset: IconProvider.day.buildImageUrl(),
+                                      height: 46,
+                                    )
+                                  : Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 30,
+                                        vertical: 8,
+                                      ),
+                                      child: const Text(
+                                        'Day',
+                                        style: TextStyle(
+                                          color: Color(0xFF3E1900),
+                                          fontSize: 23,
+                                          fontFamily: 'Mulish',
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: -0.69,
                                         ),
                                       ),
+                                    ),
                             ),
                             if (!isDay)
                               AppIcon(
@@ -243,18 +284,29 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   SizedBox(
                     height: getHeight(context, percent: 0.35),
                     child: SfCartesianChart(
-                      primaryXAxis: const DateTimeAxis(),
-                      legend: Legend(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Mulish',
-                          fontWeight: FontWeight.w300,
-                          height: 0.55,
-                          letterSpacing: -0.45,
-                        ),
-                      ),
-                      primaryYAxis: const NumericAxis(minimum: 0, interval: 1),
+                      primaryXAxis: DateTimeAxis(
+                          labelStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontFamily: 'Mulish',
+                            fontWeight: FontWeight.w300,
+                            height: 0.55,
+                            letterSpacing: -0.45,
+                          ),
+                         ),
+                      primaryYAxis: NumericAxis(
+                          labelStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontFamily: 'Mulish',
+                            fontWeight: FontWeight.w300,
+                            height: 0.55,
+                            letterSpacing: -0.45,
+                          ),
+                          minimum: 0,
+                          interval: isDay
+                              ? (selectedIndex == 1 ? 10 : 500)
+                              : (selectedIndex == 1 ? 10 : 1000)),
                       series: [
                         LineSeries<ChartData, DateTime>(
                           dataSource: chartData,
